@@ -1,0 +1,6 @@
+EquipmentID,EquipmentType,Manufacturer,InstallationDate,IsCritical
+EQP_001,Press,ABB,2020-01-01,True
+EQP_002,3D Printer,Siemens,2020-06-29,False
+EQP_003,Welder,ABB,2020-12-26,True
+EQP_004,3D Printer,ABB,2021-06-24,False
+EQP_005,3D Printer,ABB,2021-12-21,False
