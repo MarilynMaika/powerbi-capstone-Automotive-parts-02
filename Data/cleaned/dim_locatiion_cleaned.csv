@@ -1,0 +1,7 @@
+LocationID,LocationName,ProductionLine
+LOC_01,Warehouse,Line 1
+LOC_02,Assembly,Line 2
+LOC_03,Testing,Line 2
+LOC_04,Maintenance,Line 2
+LOC_05,Packaging,Line 2
+LOC_06,Storage,Line 1
