@@ -1,0 +1,11 @@
+SensorID,SensorType,Unit,CalibrationDate
+SNS_001,Pressure,Pa,2023-04-12
+SNS_002,Voltage,Volt,2022-08-03
+SNS_003,Temperature,Celsius,2022-11-27
+SNS_004,Pressure,Pa,2023-04-04
+SNS_005,Pressure,Pa,2022-03-29
+SNS_006,Voltage,Volt,2023-01-08
+SNS_007,Temperature,Celsius,2022-04-10
+SNS_008,Temperature,Celsius,2023-10-26
+SNS_009,Pressure,Pa,2022-05-11
+SNS_010,Vibration,mm/s,2023-10-24
