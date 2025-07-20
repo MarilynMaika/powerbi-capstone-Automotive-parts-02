@@ -53,6 +53,38 @@ table fact_table_cleaned
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'Maximum Temperature' = MAX(fact_table_cleaned[Temperature])
+		lineageTag: 20eb5228-373d-4f77-9cf4-110dbe74d228
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% of equipments likely to fail' =
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS(fact_table_cleaned),
+			        FILTER(
+			            fact_table_cleaned,
+			            fact_table_cleaned[PredictedFailure] = "True"
+			        )
+			    ),
+			    COUNTROWS(fact_table_cleaned)
+			)
+		formatString: 0
+		lineageTag: 2340137d-4271-41ad-8719-0f213a7ee4f4
+
+	measure CriticalEquip_HighVibration =
+			
+			CALCULATE(
+			    COUNTROWS(fact_table_cleaned),
+			    FILTER(
+			        fact_table_cleaned,
+			        fact_table_cleaned[Vibration] > 5 &&
+			        RELATED(dim_equipment_cleaned[IsCritical]) = TRUE()
+			    )
+			)
+		formatString: 0
+		lineageTag: 6efda32d-8df4-48be-9495-69c09ec1e6d8
+
 	column SensorDataID
 		dataType: string
 		lineageTag: 684f5815-de86-477f-bdc8-953c1e53873e
@@ -63,7 +95,7 @@ table fact_table_cleaned
 
 	column Timestamp
 		dataType: dateTime
-		formatString: Long Date
+		formatString: dd/mm/yyyy
 		lineageTag: 748dff5a-9e19-4ed0-871a-1e02eac1a475
 		summarizeBy: none
 		sourceColumn: Timestamp
@@ -77,6 +109,8 @@ table fact_table_cleaned
 
 		annotation UnderlyingDateTimeDataType = Date
 
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
 	column EquipmentID
 		dataType: string
 		lineageTag: 55cca41e-7506-4619-9c3a-115f03461266
@@ -86,8 +120,7 @@ table fact_table_cleaned
 		annotation SummarizationSetBy = Automatic
 
 	column TimeID
-		dataType: int64
-		formatString: 0
+		dataType: string
 		lineageTag: 41c18230-78a8-4ac7-b75c-6e59f194eeae
 		summarizeBy: none
 		sourceColumn: TimeID
@@ -240,11 +273,13 @@ table fact_table_cleaned
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\jkaru\powerbi-capstone-Automotive-parts-02\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("D:\JUNIOR USIU\Summer 2025\Data Viz\Final project\PowerBi capstone\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SensorDataID", type text}, {"Timestamp", type date}, {"EquipmentID", type text}, {"TimeID", Int64.Type}, {"SensorID", type text}, {"LocationID", type text}, {"Temperature", type number}, {"Vibration", type number}, {"Pressure", type number}, {"Voltage", type number}, {"TempNorm", type number}, {"VibNorm", type number}, {"VoltNorm", type number}, {"PresNorm", type number}, {"HealthScore", type number}, {"PredictedFailure", type logical}, {"ReactiveCost", Int64.Type}, {"PreventiveCost", Int64.Type}, {"CostAvoided", Int64.Type}})
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SensorDataID", type text}, {"Timestamp", type date}, {"EquipmentID", type text}, {"TimeID", type text}, {"SensorID", type text}, {"LocationID", type text}, {"Temperature", type number}, {"Vibration", type number}, {"Pressure", type number}, {"Voltage", type number}, {"TempNorm", type number}, {"VibNorm", type number}, {"VoltNorm", type number}, {"PresNorm", type number}, {"HealthScore", type number}, {"PredictedFailure", type logical}, {"ReactiveCost", Int64.Type}, {"PreventiveCost", Int64.Type}, {"CostAvoided", Int64.Type}})
 				in
 				    #"Changed Type"
 
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
 

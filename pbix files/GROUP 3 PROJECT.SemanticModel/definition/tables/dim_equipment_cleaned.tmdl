@@ -1,6 +1,42 @@
 table dim_equipment_cleaned
 	lineageTag: 877f5113-db83-482f-8945-f5f0cba23000
 
+	measure CriticalEquip_LowHealthCount =
+			
+			CALCULATE(
+			    COUNTROWS(fact_table_cleaned),
+			    FILTER(
+			        fact_table_cleaned,
+			        fact_table_cleaned[HealthScore] < 50 &&
+			        RELATED(dim_equipment_cleaned[IsCritical]) = TRUE()
+			    )
+			)
+		formatString: 0
+		lineageTag: c19d0d05-dc5d-438f-bc0a-6a3518762290
+
+	measure 'Reactive-to-Preventive Cost Ratio' =
+			
+			DIVIDE(SUM(fact_table_cleaned[ReactiveCost]), SUM(fact_table_cleaned[PreventiveCost]))
+		lineageTag: 1ae946fe-4401-4dd8-9916-27de2098a077
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Equipment_Count = DISTINCTCOUNT(dim_equipment_cleaned[EquipmentID])
+		formatString: 0
+		lineageTag: f7bd1c21-28ac-4311-bfeb-bf8a04ebcf69
+
+	measure Count_CriticalEquipment =
+			
+			CALCULATE(
+			    COUNTROWS(dim_equipment_cleaned),
+			    FILTER(
+			        dim_equipment_cleaned,
+			        dim_equipment_cleaned[IsCritical] = "True"
+			    )
+			)
+		formatString: 0
+		lineageTag: 6d1c2445-eca6-43d4-aea8-cb5c46938f0d
+
 	column EquipmentID
 		dataType: string
 		lineageTag: 543b8f8e-c8b4-434e-a925-f57cd068cd51
@@ -42,8 +78,7 @@ table dim_equipment_cleaned
 		annotation UnderlyingDateTimeDataType = Date
 
 	column IsCritical
-		dataType: boolean
-		formatString: """TRUE"";""TRUE"";""FALSE"""
+		dataType: string
 		lineageTag: 39a87cdc-9b5e-4a08-9907-052e91fc5463
 		summarizeBy: none
 		sourceColumn: IsCritical
@@ -54,11 +89,13 @@ table dim_equipment_cleaned
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\jkaru\powerbi-capstone-Automotive-parts-02\Data\cleaned\dim_equipment_cleaned.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("D:\JUNIOR USIU\Summer 2025\Data Viz\Final project\PowerBi capstone\Data\cleaned\dim_equipment_cleaned.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EquipmentID", type text}, {"EquipmentType", type text}, {"Manufacturer", type text}, {"InstallationDate", type date}, {"IsCritical", type logical}})
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EquipmentID", type text}, {"EquipmentType", type text}, {"Manufacturer", type text}, {"InstallationDate", type date}, {"IsCritical", type text}})
 				in
 				    #"Changed Type"
 
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
 
