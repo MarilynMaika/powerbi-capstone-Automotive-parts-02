@@ -29,8 +29,8 @@ relationship AutoDetected_732b6ad1-4b4b-4e34-a6fa-9fa80c333a6c
 	fromColumn: fact_table_cleaned.LocationID
 	toColumn: dim_locatiion_cleaned.LocationID
 
-relationship 68818ee5-c089-f0db-e64c-48ffa82dd66f
-	isActive: false
+relationship 3f95b29e-83db-45b2-ac0a-6e33ba4fa0fc
+	joinOnDateBehavior: datePartOnly
 	fromColumn: fact_table_cleaned.Timestamp
-	toColumn: dim_time_cleaned.Timestamp
+	toColumn: LocalDateTable_171a2de4-9a50-4c2f-aa54-85b9d100ac06.Date
 

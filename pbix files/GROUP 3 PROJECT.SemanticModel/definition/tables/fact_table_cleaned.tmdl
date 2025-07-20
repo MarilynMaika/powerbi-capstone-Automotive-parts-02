@@ -1,6 +1,58 @@
 table fact_table_cleaned
 	lineageTag: 612ca46d-3e5c-4e3a-9b09-a71724891eb4
 
+	measure 'Total Cost Avoided' = ```
+			SUM(fact_table_cleaned[CostAvoided])
+			
+			```
+		formatString: 0
+		lineageTag: 92ce5aef-8c73-4191-8681-b7f6ece14fe4
+
+	measure 'Total Preventive Cost' = SUM(fact_table_cleaned[PreventiveCost])
+		formatString: 0
+		lineageTag: 07a97a78-b582-4f04-9eb6-e8f38cc30f4f
+
+	measure 'Total Reactive Cost' = SUM(fact_table_cleaned[ReactiveCost])
+		formatString: 0
+		lineageTag: a39a6289-a67d-479b-8053-07c76e69070d
+
+	measure 'Average Health Score' = AVERAGE(fact_table_cleaned[HealthScore])
+		lineageTag: 6662fda4-b4e4-482d-be56-bdf6f7136de7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Temperature' = AVERAGE(fact_table_cleaned[Temperature])
+		lineageTag: c8eb75bf-2137-4f92-b820-076f951c0bdb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Vibration' = AVERAGE(fact_table_cleaned[Vibration])
+		lineageTag: aa71379c-04cd-4e8c-acb7-87e8032ca6a9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Pressure' = AVERAGE(fact_table_cleaned[Pressure])
+		lineageTag: cc17dc0c-6edf-4215-95eb-d48390b8febf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Voltage'
+		lineageTag: 60e36461-c144-44a4-ae2f-c8e4a9a92921
+
+	measure 'Failure Count' = COUNTROWS(FILTER(fact_table_cleaned, fact_table_cleaned[PredictedFailure] = TRUE()))
+		formatString: 0
+		lineageTag: 45770ad8-044a-463f-aefd-b70f3e5bb676
+
+	measure 'Average Health Score (Failed Equipment)' =
+			
+			CALCULATE(
+			    AVERAGE(fact_table_cleaned[HealthScore]),
+			    fact_table_cleaned[PredictedFailure] = TRUE()
+			)
+		lineageTag: dcc4db0f-cdd6-4924-888a-25ca4a13d712
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column SensorDataID
 		dataType: string
 		lineageTag: 684f5815-de86-477f-bdc8-953c1e53873e
@@ -15,6 +67,11 @@ table fact_table_cleaned
 		lineageTag: 748dff5a-9e19-4ed0-871a-1e02eac1a475
 		summarizeBy: none
 		sourceColumn: Timestamp
+
+		variation Variation
+			isDefault
+			relationship: 3f95b29e-83db-45b2-ac0a-6e33ba4fa0fc
+			defaultHierarchy: LocalDateTable_171a2de4-9a50-4c2f-aa54-85b9d100ac06.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -183,7 +240,7 @@ table fact_table_cleaned
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\user\Downloads\DSA 3050A\GROUP PROJECT\powerbi-capstone-Automotive-parts-02\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("C:\Users\jkaru\powerbi-capstone-Automotive-parts-02\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SensorDataID", type text}, {"Timestamp", type date}, {"EquipmentID", type text}, {"TimeID", Int64.Type}, {"SensorID", type text}, {"LocationID", type text}, {"Temperature", type number}, {"Vibration", type number}, {"Pressure", type number}, {"Voltage", type number}, {"TempNorm", type number}, {"VibNorm", type number}, {"VoltNorm", type number}, {"PresNorm", type number}, {"HealthScore", type number}, {"PredictedFailure", type logical}, {"ReactiveCost", Int64.Type}, {"PreventiveCost", Int64.Type}, {"CostAvoided", Int64.Type}})
 				in

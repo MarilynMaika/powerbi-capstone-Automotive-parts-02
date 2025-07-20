@@ -23,6 +23,7 @@ ref table LocalDateTable_639b5fce-43b0-4959-92cd-f937c68453bf
 ref table dim_locatiion_cleaned
 ref table dim_equipment_cleaned
 ref table LocalDateTable_b2912d3e-7489-4c67-9dcb-043b86808f2d
+ref table LocalDateTable_171a2de4-9a50-4c2f-aa54-85b9d100ac06
 
 ref cultureInfo en-US
 
