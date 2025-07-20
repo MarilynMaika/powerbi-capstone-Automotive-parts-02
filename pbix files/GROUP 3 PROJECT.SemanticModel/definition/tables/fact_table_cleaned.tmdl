@@ -1,0 +1,193 @@
+table fact_table_cleaned
+	lineageTag: 612ca46d-3e5c-4e3a-9b09-a71724891eb4
+
+	column SensorDataID
+		dataType: string
+		lineageTag: 684f5815-de86-477f-bdc8-953c1e53873e
+		summarizeBy: none
+		sourceColumn: SensorDataID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Timestamp
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 748dff5a-9e19-4ed0-871a-1e02eac1a475
+		summarizeBy: none
+		sourceColumn: Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column EquipmentID
+		dataType: string
+		lineageTag: 55cca41e-7506-4619-9c3a-115f03461266
+		summarizeBy: none
+		sourceColumn: EquipmentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TimeID
+		dataType: int64
+		formatString: 0
+		lineageTag: 41c18230-78a8-4ac7-b75c-6e59f194eeae
+		summarizeBy: none
+		sourceColumn: TimeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SensorID
+		dataType: string
+		lineageTag: 147d4534-98a7-4519-baeb-36aafaa18934
+		summarizeBy: none
+		sourceColumn: SensorID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationID
+		dataType: string
+		lineageTag: 1ab13b74-8d40-4572-a2d6-ee725be38c92
+		summarizeBy: none
+		sourceColumn: LocationID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Temperature
+		dataType: double
+		lineageTag: 962d100d-a50e-442c-9ce9-f1c514b494b6
+		summarizeBy: sum
+		sourceColumn: Temperature
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Vibration
+		dataType: double
+		lineageTag: a68b209c-6f67-43b9-882d-d5047ed742e4
+		summarizeBy: sum
+		sourceColumn: Vibration
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Pressure
+		dataType: double
+		lineageTag: 123e9a8f-688d-49b1-99eb-4e1ee4237214
+		summarizeBy: sum
+		sourceColumn: Pressure
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Voltage
+		dataType: double
+		lineageTag: bf6d651c-9c85-4605-b3ac-411bfc17deb7
+		summarizeBy: sum
+		sourceColumn: Voltage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TempNorm
+		dataType: double
+		lineageTag: 1d768325-980a-4364-9d4e-6faebef30968
+		summarizeBy: sum
+		sourceColumn: TempNorm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VibNorm
+		dataType: double
+		lineageTag: c632eec5-12cf-4eea-ac76-8cd6d86adf16
+		summarizeBy: sum
+		sourceColumn: VibNorm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VoltNorm
+		dataType: double
+		lineageTag: c71a122e-052d-4740-853c-bda79b74cde6
+		summarizeBy: sum
+		sourceColumn: VoltNorm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PresNorm
+		dataType: double
+		lineageTag: dc2ff27e-513d-4e4d-9f96-6802dd2f9705
+		summarizeBy: sum
+		sourceColumn: PresNorm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HealthScore
+		dataType: double
+		lineageTag: 252e5558-7f82-4766-9995-4895c10b5ce5
+		summarizeBy: sum
+		sourceColumn: HealthScore
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PredictedFailure
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bfde9364-8d3e-485e-b368-7ac649ea8170
+		summarizeBy: none
+		sourceColumn: PredictedFailure
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReactiveCost
+		dataType: int64
+		formatString: 0
+		lineageTag: 66375c9b-9023-4ac3-9e1b-59474bb8e8eb
+		summarizeBy: sum
+		sourceColumn: ReactiveCost
+
+		annotation SummarizationSetBy = Automatic
+
+	column PreventiveCost
+		dataType: int64
+		formatString: 0
+		lineageTag: 1988c2c3-79e9-48ff-b770-d2e4b43680f6
+		summarizeBy: sum
+		sourceColumn: PreventiveCost
+
+		annotation SummarizationSetBy = Automatic
+
+	column CostAvoided
+		dataType: int64
+		formatString: 0
+		lineageTag: e0fe1f3c-8e3a-4032-b681-e5c3de1eb8e7
+		summarizeBy: sum
+		sourceColumn: CostAvoided
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_table_cleaned = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\user\Downloads\DSA 3050A\GROUP PROJECT\powerbi-capstone-Automotive-parts-02\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SensorDataID", type text}, {"Timestamp", type date}, {"EquipmentID", type text}, {"TimeID", Int64.Type}, {"SensorID", type text}, {"LocationID", type text}, {"Temperature", type number}, {"Vibration", type number}, {"Pressure", type number}, {"Voltage", type number}, {"TempNorm", type number}, {"VibNorm", type number}, {"VoltNorm", type number}, {"PresNorm", type number}, {"HealthScore", type number}, {"PredictedFailure", type logical}, {"ReactiveCost", Int64.Type}, {"PreventiveCost", Int64.Type}, {"CostAvoided", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
