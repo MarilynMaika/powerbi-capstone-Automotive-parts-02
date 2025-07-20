@@ -1,0 +1,36 @@
+relationship 9360e57a-33a5-48f8-96e1-9d896c6b7dfa
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_time_cleaned.Timestamp
+	toColumn: LocalDateTable_32541905-2131-42e4-b9d3-df2b381f0a58.Date
+
+relationship AutoDetected_96cb82a2-8e4f-407a-abbf-4206021d2d2f
+	fromColumn: fact_table_cleaned.TimeID
+	toColumn: dim_time_cleaned.TimeID
+
+relationship 08752d66-0a88-492e-95f6-e911afaf84c6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_sensor_cleaned.CalibrationDate
+	toColumn: LocalDateTable_639b5fce-43b0-4959-92cd-f937c68453bf.Date
+
+relationship AutoDetected_2d731622-f918-402a-9afb-a231f4673989
+	fromColumn: fact_table_cleaned.SensorID
+	toColumn: dim_sensor_cleaned.SensorID
+
+relationship d9062d0b-bd44-4ecb-9f78-a126a05e5b43
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_equipment_cleaned.InstallationDate
+	toColumn: LocalDateTable_b2912d3e-7489-4c67-9dcb-043b86808f2d.Date
+
+relationship AutoDetected_bc31aa44-0dad-462f-9580-9732f341cd44
+	fromColumn: fact_table_cleaned.EquipmentID
+	toColumn: dim_equipment_cleaned.EquipmentID
+
+relationship AutoDetected_732b6ad1-4b4b-4e34-a6fa-9fa80c333a6c
+	fromColumn: fact_table_cleaned.LocationID
+	toColumn: dim_locatiion_cleaned.LocationID
+
+relationship 68818ee5-c089-f0db-e64c-48ffa82dd66f
+	isActive: false
+	fromColumn: fact_table_cleaned.Timestamp
+	toColumn: dim_time_cleaned.Timestamp
+

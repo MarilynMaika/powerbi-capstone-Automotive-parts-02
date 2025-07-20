@@ -1,0 +1,64 @@
+table dim_equipment_cleaned
+	lineageTag: 877f5113-db83-482f-8945-f5f0cba23000
+
+	column EquipmentID
+		dataType: string
+		lineageTag: 543b8f8e-c8b4-434e-a925-f57cd068cd51
+		summarizeBy: none
+		sourceColumn: EquipmentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column EquipmentType
+		dataType: string
+		lineageTag: dcc15507-8abf-4c38-84e8-164a314021b1
+		summarizeBy: none
+		sourceColumn: EquipmentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Manufacturer
+		dataType: string
+		lineageTag: abfece1e-608e-4364-b868-4a4506429c3c
+		summarizeBy: none
+		sourceColumn: Manufacturer
+
+		annotation SummarizationSetBy = Automatic
+
+	column InstallationDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a6d152a8-574e-402f-836a-bdff0b59d201
+		summarizeBy: none
+		sourceColumn: InstallationDate
+
+		variation Variation
+			isDefault
+			relationship: d9062d0b-bd44-4ecb-9f78-a126a05e5b43
+			defaultHierarchy: LocalDateTable_b2912d3e-7489-4c67-9dcb-043b86808f2d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column IsCritical
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 39a87cdc-9b5e-4a08-9907-052e91fc5463
+		summarizeBy: none
+		sourceColumn: IsCritical
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_equipment_cleaned = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\user\Downloads\DSA 3050A\GROUP PROJECT\powerbi-capstone-Automotive-parts-02\Data\cleaned\dim_equipment_cleaned.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EquipmentID", type text}, {"EquipmentType", type text}, {"Manufacturer", type text}, {"InstallationDate", type date}, {"IsCritical", type logical}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
