@@ -1,9 +1,9 @@
 table dim_sensor_cleaned
-	lineageTag: 2c9a493f-5926-4ff4-a564-16b36e4899c9
+	lineageTag: 64e34e03-683e-441f-a021-7e8cb6292305
 
 	column SensorID
 		dataType: string
-		lineageTag: 72ceb8a1-c8fe-47a0-8f9f-7729a601ba1a
+		lineageTag: 67939e47-f6c8-4f3c-8ea1-806427583f7a
 		summarizeBy: none
 		sourceColumn: SensorID
 
@@ -11,7 +11,7 @@ table dim_sensor_cleaned
 
 	column SensorType
 		dataType: string
-		lineageTag: 217ec999-e40e-47a0-acd3-b46df8e6bcc2
+		lineageTag: 21264e13-e246-4ca6-8374-b1b3706b918a
 		summarizeBy: none
 		sourceColumn: SensorType
 
@@ -19,7 +19,7 @@ table dim_sensor_cleaned
 
 	column Unit
 		dataType: string
-		lineageTag: 4edff316-d9d2-40e2-86a9-ab471c720bd4
+		lineageTag: 84faed71-09a0-402c-9e2e-26cf226f6d49
 		summarizeBy: none
 		sourceColumn: Unit
 
@@ -28,14 +28,14 @@ table dim_sensor_cleaned
 	column CalibrationDate
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: 4a2a17ff-6e5b-4bec-af99-d674ea80dde2
+		lineageTag: b4614313-e8e2-40b7-81e1-85eabd5878af
 		summarizeBy: none
 		sourceColumn: CalibrationDate
 
 		variation Variation
 			isDefault
-			relationship: 08752d66-0a88-492e-95f6-e911afaf84c6
-			defaultHierarchy: LocalDateTable_639b5fce-43b0-4959-92cd-f937c68453bf.'Date Hierarchy'
+			relationship: 2b7c7d6a-d90f-4eb1-9470-d6d26c405ea3
+			defaultHierarchy: LocalDateTable_d150c8ea-6d94-41e1-ad37-0a45febfcf27.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -45,11 +45,13 @@ table dim_sensor_cleaned
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\jkaru\powerbi-capstone-Automotive-parts-02\Data\cleaned\dim_sensor_cleaned.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("C:\Users\user\Downloads\DSA 3050A\GROUP PROJECT\powerbi-capstone-Automotive-parts-02\Data\cleaned\dim_sensor_cleaned.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SensorID", type text}, {"SensorType", type text}, {"Unit", type text}, {"CalibrationDate", type date}})
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CalibrationDate", type date}})
 				in
 				    #"Changed Type"
 
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
 

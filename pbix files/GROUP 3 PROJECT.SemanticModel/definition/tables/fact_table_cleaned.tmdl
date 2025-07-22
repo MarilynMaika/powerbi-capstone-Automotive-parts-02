@@ -1,61 +1,9 @@
 table fact_table_cleaned
-	lineageTag: 612ca46d-3e5c-4e3a-9b09-a71724891eb4
-
-	measure 'Total Cost Avoided' = ```
-			SUM(fact_table_cleaned[CostAvoided])
-			
-			```
-		formatString: 0
-		lineageTag: 92ce5aef-8c73-4191-8681-b7f6ece14fe4
-
-	measure 'Total Preventive Cost' = SUM(fact_table_cleaned[PreventiveCost])
-		formatString: 0
-		lineageTag: 07a97a78-b582-4f04-9eb6-e8f38cc30f4f
-
-	measure 'Total Reactive Cost' = SUM(fact_table_cleaned[ReactiveCost])
-		formatString: 0
-		lineageTag: a39a6289-a67d-479b-8053-07c76e69070d
-
-	measure 'Average Health Score' = AVERAGE(fact_table_cleaned[HealthScore])
-		lineageTag: 6662fda4-b4e4-482d-be56-bdf6f7136de7
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure 'Average Temperature' = AVERAGE(fact_table_cleaned[Temperature])
-		lineageTag: c8eb75bf-2137-4f92-b820-076f951c0bdb
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure 'Average Vibration' = AVERAGE(fact_table_cleaned[Vibration])
-		lineageTag: aa71379c-04cd-4e8c-acb7-87e8032ca6a9
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure 'Average Pressure' = AVERAGE(fact_table_cleaned[Pressure])
-		lineageTag: cc17dc0c-6edf-4215-95eb-d48390b8febf
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure 'Average Voltage'
-		lineageTag: 60e36461-c144-44a4-ae2f-c8e4a9a92921
-
-	measure 'Failure Count' = COUNTROWS(FILTER(fact_table_cleaned, fact_table_cleaned[PredictedFailure] = TRUE()))
-		formatString: 0
-		lineageTag: 45770ad8-044a-463f-aefd-b70f3e5bb676
-
-	measure 'Average Health Score (Failed Equipment)' =
-			
-			CALCULATE(
-			    AVERAGE(fact_table_cleaned[HealthScore]),
-			    fact_table_cleaned[PredictedFailure] = TRUE()
-			)
-		lineageTag: dcc4db0f-cdd6-4924-888a-25ca4a13d712
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+	lineageTag: dd6ad3d9-a11a-45e6-9ad7-1725108f2b2c
 
 	column SensorDataID
 		dataType: string
-		lineageTag: 684f5815-de86-477f-bdc8-953c1e53873e
+		lineageTag: 2c964c14-2b6a-4647-a771-cc523db0de0c
 		summarizeBy: none
 		sourceColumn: SensorDataID
 
@@ -64,14 +12,9 @@ table fact_table_cleaned
 	column Timestamp
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: 748dff5a-9e19-4ed0-871a-1e02eac1a475
+		lineageTag: f34a846c-7465-460c-bb58-5b42944a36f5
 		summarizeBy: none
 		sourceColumn: Timestamp
-
-		variation Variation
-			isDefault
-			relationship: 3f95b29e-83db-45b2-ac0a-6e33ba4fa0fc
-			defaultHierarchy: LocalDateTable_171a2de4-9a50-4c2f-aa54-85b9d100ac06.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -79,16 +22,15 @@ table fact_table_cleaned
 
 	column EquipmentID
 		dataType: string
-		lineageTag: 55cca41e-7506-4619-9c3a-115f03461266
+		lineageTag: 272ba7a1-e5f1-4abe-8569-dc1bbc20cd69
 		summarizeBy: none
 		sourceColumn: EquipmentID
 
 		annotation SummarizationSetBy = Automatic
 
 	column TimeID
-		dataType: int64
-		formatString: 0
-		lineageTag: 41c18230-78a8-4ac7-b75c-6e59f194eeae
+		dataType: string
+		lineageTag: 030bac3d-29cb-40fe-b6af-18c9cd4e0b1d
 		summarizeBy: none
 		sourceColumn: TimeID
 
@@ -96,7 +38,7 @@ table fact_table_cleaned
 
 	column SensorID
 		dataType: string
-		lineageTag: 147d4534-98a7-4519-baeb-36aafaa18934
+		lineageTag: 790d1ad1-1e7e-4752-bb32-2903d200dc76
 		summarizeBy: none
 		sourceColumn: SensorID
 
@@ -104,7 +46,7 @@ table fact_table_cleaned
 
 	column LocationID
 		dataType: string
-		lineageTag: 1ab13b74-8d40-4572-a2d6-ee725be38c92
+		lineageTag: c47167fa-8dac-4da2-9bb8-d1b18c70f29d
 		summarizeBy: none
 		sourceColumn: LocationID
 
@@ -112,7 +54,7 @@ table fact_table_cleaned
 
 	column Temperature
 		dataType: double
-		lineageTag: 962d100d-a50e-442c-9ce9-f1c514b494b6
+		lineageTag: 85a98420-2bff-4895-8aeb-b65366ea94af
 		summarizeBy: sum
 		sourceColumn: Temperature
 
@@ -122,7 +64,7 @@ table fact_table_cleaned
 
 	column Vibration
 		dataType: double
-		lineageTag: a68b209c-6f67-43b9-882d-d5047ed742e4
+		lineageTag: 66160c14-1a05-4c4f-9ed3-51f39249d0ea
 		summarizeBy: sum
 		sourceColumn: Vibration
 
@@ -132,7 +74,7 @@ table fact_table_cleaned
 
 	column Pressure
 		dataType: double
-		lineageTag: 123e9a8f-688d-49b1-99eb-4e1ee4237214
+		lineageTag: 6d5b39a4-53a3-489e-a8eb-d44ec61f7c55
 		summarizeBy: sum
 		sourceColumn: Pressure
 
@@ -142,7 +84,7 @@ table fact_table_cleaned
 
 	column Voltage
 		dataType: double
-		lineageTag: bf6d651c-9c85-4605-b3ac-411bfc17deb7
+		lineageTag: e7dc19f1-d085-452b-8b5c-43bbeb9d5b1f
 		summarizeBy: sum
 		sourceColumn: Voltage
 
@@ -152,7 +94,7 @@ table fact_table_cleaned
 
 	column TempNorm
 		dataType: double
-		lineageTag: 1d768325-980a-4364-9d4e-6faebef30968
+		lineageTag: 91c8e9b9-ff73-46b5-9b77-5c9b9e5c3eff
 		summarizeBy: sum
 		sourceColumn: TempNorm
 
@@ -162,7 +104,7 @@ table fact_table_cleaned
 
 	column VibNorm
 		dataType: double
-		lineageTag: c632eec5-12cf-4eea-ac76-8cd6d86adf16
+		lineageTag: 39c5953b-c19b-497b-a02a-420fa082618c
 		summarizeBy: sum
 		sourceColumn: VibNorm
 
@@ -172,7 +114,7 @@ table fact_table_cleaned
 
 	column VoltNorm
 		dataType: double
-		lineageTag: c71a122e-052d-4740-853c-bda79b74cde6
+		lineageTag: 71df9dc1-3585-48f6-a0b5-845dda983d55
 		summarizeBy: sum
 		sourceColumn: VoltNorm
 
@@ -182,7 +124,7 @@ table fact_table_cleaned
 
 	column PresNorm
 		dataType: double
-		lineageTag: dc2ff27e-513d-4e4d-9f96-6802dd2f9705
+		lineageTag: e3d5dc7e-b4ea-40cc-9548-6a5973676886
 		summarizeBy: sum
 		sourceColumn: PresNorm
 
@@ -192,7 +134,7 @@ table fact_table_cleaned
 
 	column HealthScore
 		dataType: double
-		lineageTag: 252e5558-7f82-4766-9995-4895c10b5ce5
+		lineageTag: 117e48c4-937f-4dd7-884e-6cd49e0e35ae
 		summarizeBy: sum
 		sourceColumn: HealthScore
 
@@ -203,7 +145,7 @@ table fact_table_cleaned
 	column PredictedFailure
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: bfde9364-8d3e-485e-b368-7ac649ea8170
+		lineageTag: 08d84f68-57fe-4e02-88cd-061931627a71
 		summarizeBy: none
 		sourceColumn: PredictedFailure
 
@@ -212,7 +154,7 @@ table fact_table_cleaned
 	column ReactiveCost
 		dataType: int64
 		formatString: 0
-		lineageTag: 66375c9b-9023-4ac3-9e1b-59474bb8e8eb
+		lineageTag: 8e69cca0-b5fb-4a83-beeb-cec891dd7ca5
 		summarizeBy: sum
 		sourceColumn: ReactiveCost
 
@@ -221,7 +163,7 @@ table fact_table_cleaned
 	column PreventiveCost
 		dataType: int64
 		formatString: 0
-		lineageTag: 1988c2c3-79e9-48ff-b770-d2e4b43680f6
+		lineageTag: 31994d8c-a14f-4beb-b75d-3c67ebbc9777
 		summarizeBy: sum
 		sourceColumn: PreventiveCost
 
@@ -230,7 +172,7 @@ table fact_table_cleaned
 	column CostAvoided
 		dataType: int64
 		formatString: 0
-		lineageTag: e0fe1f3c-8e3a-4032-b681-e5c3de1eb8e7
+		lineageTag: 3b07f227-1fe6-4623-9dc7-c3df3be77183
 		summarizeBy: sum
 		sourceColumn: CostAvoided
 
@@ -240,11 +182,13 @@ table fact_table_cleaned
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\jkaru\powerbi-capstone-Automotive-parts-02\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("C:\Users\user\Downloads\DSA 3050A\GROUP PROJECT\powerbi-capstone-Automotive-parts-02\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SensorDataID", type text}, {"Timestamp", type date}, {"EquipmentID", type text}, {"TimeID", Int64.Type}, {"SensorID", type text}, {"LocationID", type text}, {"Temperature", type number}, {"Vibration", type number}, {"Pressure", type number}, {"Voltage", type number}, {"TempNorm", type number}, {"VibNorm", type number}, {"VoltNorm", type number}, {"PresNorm", type number}, {"HealthScore", type number}, {"PredictedFailure", type logical}, {"ReactiveCost", Int64.Type}, {"PreventiveCost", Int64.Type}, {"CostAvoided", Int64.Type}})
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Timestamp", type date}, {"Temperature", type number}, {"Vibration", type number}, {"Pressure", type number}, {"Voltage", type number}, {"TempNorm", type number}, {"VibNorm", type number}, {"VoltNorm", type number}, {"PresNorm", type number}, {"HealthScore", type number}, {"ReactiveCost", Int64.Type}, {"PreventiveCost", Int64.Type}, {"CostAvoided", Int64.Type}, {"PredictedFailure", type logical}})
 				in
 				    #"Changed Type"
 
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
 

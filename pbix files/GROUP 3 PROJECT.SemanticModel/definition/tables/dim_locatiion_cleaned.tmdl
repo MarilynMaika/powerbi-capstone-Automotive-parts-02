@@ -1,9 +1,9 @@
 table dim_locatiion_cleaned
-	lineageTag: 4a23838f-e026-43ca-aa31-1a64839381f7
+	lineageTag: ef6b6b94-e4da-4d0e-ac81-3c67d1a1bae1
 
 	column LocationID
 		dataType: string
-		lineageTag: 0f6f3c56-e971-425f-8d29-30c5a468b5fd
+		lineageTag: 88f49de1-b75c-4ea4-a6c6-6451ab80a313
 		summarizeBy: none
 		sourceColumn: LocationID
 
@@ -11,7 +11,7 @@ table dim_locatiion_cleaned
 
 	column LocationName
 		dataType: string
-		lineageTag: 2d2f4f1e-a807-4da1-bc2c-f815c2ba1d3d
+		lineageTag: d5ad10ec-458e-428b-b3aa-60196bddedad
 		summarizeBy: none
 		sourceColumn: LocationName
 
@@ -19,7 +19,7 @@ table dim_locatiion_cleaned
 
 	column ProductionLine
 		dataType: string
-		lineageTag: 75ccf4a6-e61f-400c-9778-1eb0496721f3
+		lineageTag: af7e7cc5-e084-4923-8872-40127e08459d
 		summarizeBy: none
 		sourceColumn: ProductionLine
 
@@ -29,12 +29,10 @@ table dim_locatiion_cleaned
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\jkaru\powerbi-capstone-Automotive-parts-02\Data\cleaned\dim_locatiion_cleaned.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),
-				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}}),
-				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
-				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"LocationID", type text}, {"LocationName", type text}, {"ProductionLine", type text}})
+				    Source = Csv.Document(File.Contents("C:\Users\user\Downloads\DSA 3050A\GROUP PROJECT\powerbi-capstone-Automotive-parts-02\Data\cleaned\dim_locatiion_cleaned.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
 				in
-				    #"Changed Type1"
+				    #"Promoted Headers"
 
 	annotation PBI_ResultType = Table
 

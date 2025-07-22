@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "author": {
+    "name": "Abdullah",
+    "email": "abdulla@sagasit.com"
+  },
+  "resources": [
+    {
+      "resourceId": "rId0",
+      "sourceType": 5,
+      "file": "resources/myTestVisualBBED0A4D4D8D44CE93CF2DAFADEE466C.pbiviz.json"
+    }
+  ],
+  "visual": {
+    "guid": "myTestVisualBBED0A4D4D8D44CE93CF2DAFADEE466C",
+    "name": "KPI Score Card",
+    "displayName": "KPI Scorecard",
+    "version": "1.0.0",
+    "description": "this is my order",
+    "supportUrl": "www.google.com",
+    "gitHubUrl": "",
+    "visualClassName": "Visual"
+  },
+  "metadata": {
+    "pbivizjson": {
+      "resourceId": "rId0"
+    }
+  }
+}
