@@ -1,0 +1,13 @@
+{
+  "name": "Custom Violet Theme",
+  "dataColors": [
+    "#36151e",
+    "#593f62",
+    "#7b6d8d",
+    "#e3e4db",
+    "#f6f0ed"
+  ],
+  "background": "#f6f0ed",
+  "foreground": "#36151e",
+  "tableAccent": "#7b6d8d"
+}
