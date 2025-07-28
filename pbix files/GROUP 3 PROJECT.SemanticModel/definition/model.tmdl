@@ -6,15 +6,15 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBIDesktopVersion = 2.145.1105.0 (25.07)+decbc46fce458c5b8d5109d6f32a743f2ac949c8
+annotation PBI_QueryOrder = ["fact_table_cleaned","dim_time_cleaned","dim_sensor_cleaned","dim_locatiion_cleaned","dim_equipment_cleaned"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["fact_table_cleaned","dim_time_cleaned","dim_sensor_cleaned","dim_locatiion_cleaned","dim_equipment_cleaned"]
-
-annotation __TEdtr = 1
+annotation PBIDesktopVersion = 2.145.1262.0 (25.07)+10bdeda5ab0db954b2cf824e7a117ad7cee97f88
 
 annotation PBI_ProTooling = ["DevMode","CalcGroup","TMDLView_Desktop"]
+
+annotation __TEdtr = 1
 
 ref table fact_table_cleaned
 ref table dim_time_cleaned
