@@ -1,57 +1,70 @@
 table dim_time_cleaned
-	lineageTag: e376ce01-b222-4339-ac6e-28b276d93b26
+	lineageTag: 62be38e1-debb-4c8b-8acc-57dbb55d09c5
 
 	column TimeID
-		dataType: string
-		lineageTag: dfa7c36f-f08f-45eb-8296-e256e574aa1d
+		dataType: int64
+		formatString: 0
+		lineageTag: 07a69742-bbe1-4d2e-9c10-58b173d2f3db
 		summarizeBy: none
 		sourceColumn: TimeID
 
 		annotation SummarizationSetBy = Automatic
 
 	column Timestamp
-		dataType: string
-		lineageTag: a8445bea-09d4-4742-97e6-6c65de9aec43
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 03f234c5-203a-4808-94e6-fe0840f43899
 		summarizeBy: none
 		sourceColumn: Timestamp
 
+		variation Variation
+			isDefault
+			relationship: 9360e57a-33a5-48f8-96e1-9d896c6b7dfa
+			defaultHierarchy: LocalDateTable_32541905-2131-42e4-b9d3-df2b381f0a58.'Date Hierarchy'
+
 		annotation SummarizationSetBy = Automatic
 
+		annotation UnderlyingDateTimeDataType = Date
+
 	column Hour
-		dataType: string
-		lineageTag: 98da4348-ed09-4277-bb77-ecfeb1f0fd3c
-		summarizeBy: none
+		dataType: int64
+		formatString: 0
+		lineageTag: aebecd77-73d4-4e9a-b839-6a8d721655be
+		summarizeBy: sum
 		sourceColumn: Hour
 
 		annotation SummarizationSetBy = Automatic
 
 	column Day
-		dataType: string
-		lineageTag: 8397624f-e643-43f9-8467-bbcca915c761
-		summarizeBy: none
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c53ad0b-6c0f-4aa5-b269-9d8edc3f859b
+		summarizeBy: sum
 		sourceColumn: Day
 
 		annotation SummarizationSetBy = Automatic
 
 	column Month
-		dataType: string
-		lineageTag: 3d898a6b-9505-4991-a6cc-0c782df8c927
-		summarizeBy: none
+		dataType: int64
+		formatString: 0
+		lineageTag: 35bcd49e-f432-4f7f-8d61-da6af2359c3f
+		summarizeBy: sum
 		sourceColumn: Month
 
 		annotation SummarizationSetBy = Automatic
 
 	column Year
-		dataType: string
-		lineageTag: c703d140-377b-4b4d-8848-27b102376c36
-		summarizeBy: none
+		dataType: int64
+		formatString: 0
+		lineageTag: f2b10ca1-259d-4e29-8ecf-dca0df86671a
+		summarizeBy: sum
 		sourceColumn: Year
 
 		annotation SummarizationSetBy = Automatic
 
 	column Weekday
 		dataType: string
-		lineageTag: 173f5c31-8883-4d60-b497-78efc62ae6ae
+		lineageTag: 4d8c8adc-64fe-4403-aa73-9b01b28b6e6b
 		summarizeBy: none
 		sourceColumn: Weekday
 
@@ -61,12 +74,11 @@ table dim_time_cleaned
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\user\Downloads\DSA 3050A\GROUP PROJECT\powerbi-capstone-Automotive-parts-02\Data\cleaned\dim_time_cleaned.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
-				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+				    Source = Csv.Document(File.Contents("D:\JUNIOR USIU\Summer 2025\Data Viz\Final project\PowerBi capstone\Data\cleaned\dim_time_cleaned.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TimeID", Int64.Type}, {"Timestamp", type date}, {"Hour", Int64.Type}, {"Day", Int64.Type}, {"Month", Int64.Type}, {"Year", Int64.Type}, {"Weekday", type text}})
 				in
-				    #"Promoted Headers"
+				    #"Changed Type"
 
 	annotation PBI_ResultType = Table
-
-	annotation PBI_NavigationStepName = Navigation
 
