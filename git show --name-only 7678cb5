@@ -1,0 +1,380 @@
+[33mcommit 7678cb572089aa4ba1f12a3657f8778653a0dab5[m
+Author: Amy N <jkarundu@gmail.com>
+Date:   Mon Jul 28 14:29:22 2025 +0300
+
+    Reverted 4 commits that introduced broken Power BI project files
+
+[1mdiff --git a/README.md b/README.md[m
+[1mdeleted file mode 100644[m
+[1mindex 1b3daec..0000000[m
+[1m--- a/README.md[m
+[1m+++ /dev/null[m
+[36m@@ -1,21 +0,0 @@[m
+[31m-# Power BI Capstone Project – [Automotive parts manufacturer with IoT sensors][m
+[31m-**Group [3]** | DSA 3050A – Semester Project[m
+[31m-## Group Members[m
+[31m-- Student 1 – Marilyn Maika[m
+[31m-- Student 2 – Gracy Kisia[m
+[31m-- Student 3 – Amy Njenga[m
+[31m-## Project Summary[m
+[31m-In the automotive manufacturing industry, unexpected equipment failures can cause costly downtime, missed delivery targets, and reduced product quality. This project aims to shift from reactive to predictive maintenance by using IoT sensor data — including temperature, vibration, voltage, and pressure — to assess machine health in real time. We developed an interactive Power BI dashboard that identifies at-risk equipment, forecasts potential failures, and quantifies maintenance cost savings. This enables decision-makers to schedule interventions proactively, reduce operational disruptions, and improve production efficiency.[m
+[31m-## Key Deliverables[m
+[31m-- Business KPIs[m
+[31m-- Top 3 insights[m
+[31m-- ROI estimate summary[m
+[31m-## Technical Features[m
+[31m-- Star schema model with RLS[m
+[31m-- 30+ DAX measures[m
+[31m-- Mobile layout included[m
+[31m-- Parameters and drill-through enabled[m
+[31m-## Published Dashboard[m
+[31m- [Click to View Live Report](PASTE_PUBLISH_TO_WEB_LINK_HERE)[m
+[31m-## Presentation Materials[m
+[31m-See `documentation/` folder for full report[m
+[1mdiff --git a/pbix files/.gitignore b/pbix files/.gitignore[m
+[1mnew file mode 100644[m
+[1mindex 0000000..5a482b1[m
+[1m--- /dev/null[m
+[1m+++ b/pbix files/.gitignore[m	
+[36m@@ -0,0 +1,2 @@[m
+[32m+[m[32m**/.pbi/localSettings.json[m
+[32m+[m[32m**/.pbi/cache.abf[m
+\ No newline at end of file[m
+[1mdiff --git a/pbix files/GROUP 3 PROJECT.Report/report.json b/pbix files/GROUP 3 PROJECT.Report/report.json[m
+[1mindex 5ff2615..c82318e 100644[m
+[1m--- a/pbix files/GROUP 3 PROJECT.Report/report.json[m	
+[1m+++ b/pbix files/GROUP 3 PROJECT.Report/report.json[m	
+[36m@@ -49,7 +49,6 @@[m
+       "displayOption": 2,[m
+       "filters": "[]",[m
+       "height": 720.00,[m
+[31m-<<<<<<< HEAD[m
+       "name": "ReportSection0144412f16027752a4a6",[m
+       "visualContainers": [[m
+         {[m
+[36m@@ -85,21 +84,10 @@[m
+           "height": 720.00,[m
+           "width": 152.00,[m
+           "x": 0.00,[m
+[31m-=======[m
+[31m-      "name": "ad39cc2126fb9d9a0b8a",[m
+[31m-      "visualContainers": [[m
+[31m-        {[m
+[31m-          "config": "{\"name\":\"029cdf78846a3fc1546a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":0,\"width\":280,\"height\":280,\"z\":0,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"dim_sensor_cleaned.SensorID\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_sensor_cleaned\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"SensorID\"},\"Name\":\"dim_sensor_cleaned.SensorID\",\"NativeReferenceName\":\"SensorID\"}]},\"drillFilterOtherVisuals\":true}}",[m
+[31m-          "filters": "[]",[m
+[31m-          "height": 280.00,[m
+[31m-          "width": 280.00,[m
+[31m-          "x": 10.00,[m
+[31m->>>>>>> 2c1f8934cc14d265123955f1eff18500f4388fcd[m
+           "y": 0.00,[m
+           "z": 0.00[m
+         },[m
+         {[m
+[31m-<<<<<<< HEAD[m
+           "config": "{\"name\":\"445691b54ec401c6fd65\",\"layouts\":[{\"id\":0,\"position\":{\"x\":8,\"y\":104,\"z\":10000,\"width\":136,\"height\":32,\"tabOrder\":8000}}],\"singleVisual\":{\"visualType\":\"actionButton\",\"drillFilterOtherVisuals\":true,\"objects\":{\"fill\":[{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"75D\"}}}},\"selector\":{\"id\":\"default\"}},{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"75D\"}}}},\"selector\":{\"id\":\"hover\"}}]},\"vcObjects\":{\"visualLink\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",[m
+           "filters": "[]",[m
+           "height": 32.00,[m
+[36m@@ -136,16 +124,16 @@[m
+           "z": 9000.00[m
+         },[m
+         {[m
+[31m-          "config": "{\"name\":\"72c6fe284b7d5dedf244\",\"layouts\":[{\"id\":0,\"position\":{\"x\":184,\"y\":16,\"z\":6000,\"width\":472,\"height\":64,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Dummy Sales Dashboard\",\"textStyle\":{\"fontSize\":\"28pt\"}}]}]}}]},\"vcObjects\":{}}}",[m
+[32m+[m[32m          "config": "{\"name\":\"72c6fe284b7d5dedf244\",\"layouts\":[{\"id\":0,\"position\":{\"x\":184.5702555883712,\"y\":15.641547083760269,\"z\":6000,\"width\":1062.0610469873222,\"height\":64.1303430434171,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"PREDICTIVE MAINTENANCE ANALYSIS DASHBOARD\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontFamily\":\"Arial Unicode MS\",\"fontSize\":\"28pt\"}}],\"horizontalTextAlignment\":\"center\"}]}}]},\"vcObjects\":{}}}",[m
+           "filters": "[]",[m
+[31m-          "height": 64.00,[m
+[31m-          "width": 472.00,[m
+[31m-          "x": 184.00,[m
+[31m-          "y": 16.00,[m
+[32m+[m[32m          "height": 64.13,[m
+[32m+[m[32m          "width": 1062.06,[m
+[32m+[m[32m          "x": 184.57,[m
+[32m+[m[32m          "y": 15.64,[m
+           "z": 6000.00[m
+         },[m
+         {[m
+[31m-          "config": "{\"name\":\"89c08402a07765a88c02\",\"layouts\":[{\"id\":0,\"position\":{\"x\":984.9085239838172,\"y\":192.73500137660105,\"z\":3000,\"width\":262.9689425562099,\"height\":217.23521341599948,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"fact_table_cleaned.PredictedFailure\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(fact_table_cleaned.SensorDataID)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fact_table_cleaned\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"PredictedFailure\"},\"Name\":\"fact_table_cleaned.PredictedFailure\",\"NativeReferenceName\":\"PredictedFailure\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SensorDataID\"}},\"Function\":5},\"Name\":\"CountNonNull(fact_table_cleaned.SensorDataID)\",\"NativeReferenceName\":\"Count of SensorDataID\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SensorDataID\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{},\"vcObjects\":{\"title\":[{\"properties\":{\"heading\":{\"expr\":{\"Literal\":{\"Value\":\"'Heading2'\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Count of Sensor Data ID by Predicted Failure'\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Arial Unicode MS'''\"}}}}}]}}}",[m
+[32m+[m[32m          "config": "{\"name\":\"89c08402a07765a88c02\",\"layouts\":[{\"id\":0,\"position\":{\"x\":984.9085239838172,\"y\":192.73500137660105,\"z\":3000,\"width\":262.9689425562099,\"height\":217.23521341599948,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"fact_table_cleaned.PredictedFailure\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(fact_table_cleaned.SensorDataID)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fact_table_cleaned\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"PredictedFailure\"},\"Name\":\"fact_table_cleaned.PredictedFailure\",\"NativeReferenceName\":\"PredictedFailure\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SensorDataID\"}},\"Function\":5},\"Name\":\"CountNonNull(fact_table_cleaned.SensorDataID)\",\"NativeReferenceName\":\"Count of SensorDataID\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SensorDataID\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{},\"vcObjects\":{\"title\":[{\"properties\":{\"heading\":{\"expr\":{\"Literal\":{\"Value\":\"'Heading2'\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Count of Sensor Data ID by Predicted Failure'\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Arial Unicode MS'''\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",[m
+           "filters": "[]",[m
+           "height": 217.24,[m
+           "width": 262.97,[m
+[36m@@ -214,33 +202,6 @@[m
+           "x": 1008.00,[m
+           "y": 80.00,[m
+           "z": 13000.00[m
+[31m-=======[m
+[31m-          "config": "{\"name\":\"5d437adee0fb1fd035ff\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":290,\"width\":280,\"height\":280,\"z\":1,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"card\",\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",[m
+[31m-          "filters": "[]",[m
+[31m-          "height": 280.00,[m
+[31m-          "width": 280.00,[m
+[31m-          "x": 10.00,[m
+[31m-          "y": 290.00,[m
+[31m-          "z": 1.00[m
+[31m-        },[m
+[31m-        {[m
+[31m-          "config": "{\"name\":\"6b5ac14e3de0e0f7c03b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":300,\"y\":0,\"width\":280,\"height\":280,\"z\":3,\"tabOrder\":3}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"dim_equipment_cleaned.CriticalEquip_LowHealthCount\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_equipment_cleaned\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"CriticalEquip_LowHealthCount\"},\"Name\":\"dim_equipment_cleaned.CriticalEquip_LowHealthCount\",\"NativeReferenceName\":\"CriticalEquip_LowHealthCount\"}]},\"drillFilterOtherVisuals\":true}}",[m
+[31m-          "filters": "[]",[m
+[31m-          "height": 280.00,[m
+[31m-          "width": 280.00,[m
+[31m-          "x": 300.00,[m
+[31m-          "y": 0.00,[m
+[31m-          "z": 3.00[m
+[31m-        },[m
+[31m-        {[m
+[31m-          "config": "{\"name\":\"9c1e0f1ee5fb2bcb24ff\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":570,\"width\":280,\"height\":150,\"z\":2,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"dim_equipment_cleaned.Count_CriticalEquipment\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_equipment_cleaned\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Count_CriticalEquipment\"},\"Name\":\"dim_equipment_cleaned.Count_CriticalEquipment\",\"NativeReferenceName\":\"Count_CriticalEquipment\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Count_CriticalEquipment\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",[m
+[31m-          "filters": "[]",[m
+[31m-          "height": 150.00,[m
+[31m-          "width": 280.00,[m
+[31m-          "x": 10.00,[m
+[31m-          "y": 570.00,[m
+[31m-          "z": 2.00[m
+[31m->>>>>>> 2c1f8934cc14d265123955f1eff18500f4388fcd[m
+         }[m
+       ],[m
+       "width": 1280.00[m
+[1mdiff --git a/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/dim_equipment_cleaned.tmdl b/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/dim_equipment_cleaned.tmdl[m
+[1mindex 7540cad..c8a7b94 100644[m
+[1m--- a/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/dim_equipment_cleaned.tmdl[m	
+[1m+++ b/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/dim_equipment_cleaned.tmdl[m	
+[36m@@ -1,42 +1,6 @@[m
+ table dim_equipment_cleaned[m
+ 	lineageTag: 91217463-8038-42a9-9e24-a8089538f615[m
+ [m
+[31m-	measure CriticalEquip_LowHealthCount =[m
+[31m-			[m
+[31m-			CALCULATE([m
+[31m-			    COUNTROWS(fact_table_cleaned),[m
+[31m-			    FILTER([m
+[31m-			        fact_table_cleaned,[m
+[31m-			        fact_table_cleaned[HealthScore] < 50 &&[m
+[31m-			        RELATED(dim_equipment_cleaned[IsCritical]) = TRUE()[m
+[31m-			    )[m
+[31m-			)[m
+[31m-		formatString: 0[m
+[31m-		lineageTag: c19d0d05-dc5d-438f-bc0a-6a3518762290[m
+[31m-[m
+[31m-	measure 'Reactive-to-Preventive Cost Ratio' =[m
+[31m-			[m
+[31m-			DIVIDE(SUM(fact_table_cleaned[ReactiveCost]), SUM(fact_table_cleaned[PreventiveCost]))[m
+[31m-		lineageTag: 1ae946fe-4401-4dd8-9916-27de2098a077[m
+[31m-[m
+[31m-		annotation PBI_FormatHint = {"isGeneralNumber":true}[m
+[31m-[m
+[31m-	measure Equipment_Count = DISTINCTCOUNT(dim_equipment_cleaned[EquipmentID])[m
+[31m-		formatString: 0[m
+[31m-		lineageTag: f7bd1c21-28ac-4311-bfeb-bf8a04ebcf69[m
+[31m-[m
+[31m-	measure Count_CriticalEquipment =[m
+[31m-			[m
+[31m-			CALCULATE([m
+[31m-			    COUNTROWS(dim_equipment_cleaned),[m
+[31m-			    FILTER([m
+[31m-			        dim_equipment_cleaned,[m
+[31m-			        dim_equipment_cleaned[IsCritical] = "True"[m
+[31m-			    )[m
+[31m-			)[m
+[31m-		formatString: 0[m
+[31m-		lineageTag: 6d1c2445-eca6-43d4-aea8-cb5c46938f0d[m
+[31m-[m
+ 	column EquipmentID[m
+ 		dataType: string[m
+ 		lineageTag: de4a73b2-ecbd-4796-bc52-a74c423e28b2[m
+[36m@@ -78,14 +42,9 @@[m [mtable dim_equipment_cleaned[m
+ 		annotation UnderlyingDateTimeDataType = Date[m
+ [m
+ 	column IsCritical[m
+[31m-<<<<<<< HEAD[m
+ 		dataType: boolean[m
+ 		formatString: """TRUE"";""TRUE"";""FALSE"""[m
+ 		lineageTag: 605a3d45-f47b-4118-9548-987ba51f5496[m
+[31m-=======[m
+[31m-		dataType: string[m
+[31m-		lineageTag: 39a87cdc-9b5e-4a08-9907-052e91fc5463[m
+[31m->>>>>>> 2c1f8934cc14d265123955f1eff18500f4388fcd[m
+ 		summarizeBy: none[m
+ 		sourceColumn: IsCritical[m
+ [m
+[36m@@ -95,15 +54,9 @@[m [mtable dim_equipment_cleaned[m
+ 		mode: import[m
+ 		source =[m
+ 				let[m
+[31m-<<<<<<< HEAD[m
+ 				    Source = Csv.Document(File.Contents("C:\Users\user\Downloads\DSA 3050A\GROUP PROJECT\powerbi-capstone-Automotive-parts-02\Data\cleaned\dim_equipment_cleaned.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),[m
+ 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),[m
+ 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"InstallationDate", type date}, {"IsCritical", type logical}})[m
+[31m-=======[m
+[31m-				    Source = Csv.Document(File.Contents("D:\JUNIOR USIU\Summer 2025\Data Viz\Final project\PowerBi capstone\Data\cleaned\dim_equipment_cleaned.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),[m
+[31m-				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),[m
+[31m-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EquipmentID", type text}, {"EquipmentType", type text}, {"Manufacturer", type text}, {"InstallationDate", type date}, {"IsCritical", type text}})[m
+[31m->>>>>>> 2c1f8934cc14d265123955f1eff18500f4388fcd[m
+ 				in[m
+ 				    #"Changed Type"[m
+ [m
+[1mdiff --git a/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/dim_locatiion_cleaned.tmdl b/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/dim_locatiion_cleaned.tmdl[m
+[1mindex d6f5b0a..0421231 100644[m
+[1m--- a/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/dim_locatiion_cleaned.tmdl[m	
+[1m+++ b/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/dim_locatiion_cleaned.tmdl[m	
+[36m@@ -29,15 +29,8 @@[m [mtable dim_locatiion_cleaned[m
+ 		mode: import[m
+ 		source =[m
+ 				let[m
+[31m-<<<<<<< HEAD[m
+ 				    Source = Csv.Document(File.Contents("C:\Users\user\Downloads\DSA 3050A\GROUP PROJECT\powerbi-capstone-Automotive-parts-02\Data\cleaned\dim_locatiion_cleaned.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),[m
+ 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])[m
+[31m-=======[m
+[31m-				    Source = Csv.Document(File.Contents("D:\JUNIOR USIU\Summer 2025\Data Viz\Final project\PowerBi capstone\Data\cleaned\dim_locatiion_cleaned.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),[m
+[31m-				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}}),[m
+[31m-				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),[m
+[31m-				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"LocationID", type text}, {"LocationName", type text}, {"ProductionLine", type text}})[m
+[31m->>>>>>> 2c1f8934cc14d265123955f1eff18500f4388fcd[m
+ 				in[m
+ 				    #"Promoted Headers"[m
+ [m
+[1mdiff --git a/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/dim_sensor_cleaned.tmdl b/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/dim_sensor_cleaned.tmdl[m
+[1mindex 8940450..bf01be2 100644[m
+[1m--- a/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/dim_sensor_cleaned.tmdl[m	
+[1m+++ b/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/dim_sensor_cleaned.tmdl[m	
+[36m@@ -45,11 +45,7 @@[m [mtable dim_sensor_cleaned[m
+ 		mode: import[m
+ 		source =[m
+ 				let[m
+[31m-<<<<<<< HEAD[m
+ 				    Source = Csv.Document(File.Contents("C:\Users\user\Downloads\DSA 3050A\GROUP PROJECT\powerbi-capstone-Automotive-parts-02\Data\cleaned\dim_sensor_cleaned.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),[m
+[31m-=======[m
+[31m-				    Source = Csv.Document(File.Contents("D:\JUNIOR USIU\Summer 2025\Data Viz\Final project\PowerBi capstone\Data\cleaned\dim_sensor_cleaned.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),[m
+[31m->>>>>>> 2c1f8934cc14d265123955f1eff18500f4388fcd[m
+ 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),[m
+ 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CalibrationDate", type date}})[m
+ 				in[m
+[1mdiff --git a/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/dim_time_cleaned.tmdl b/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/dim_time_cleaned.tmdl[m
+[1mindex 5d24729..7f44abe 100644[m
+[1m--- a/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/dim_time_cleaned.tmdl[m	
+[1m+++ b/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/dim_time_cleaned.tmdl[m	
+[36m@@ -61,14 +61,8 @@[m [mtable dim_time_cleaned[m
+ 		mode: import[m
+ 		source =[m
+ 				let[m
+[31m-<<<<<<< HEAD[m
+ 				    Source = Csv.Document(File.Contents("C:\Users\user\Downloads\DSA 3050A\GROUP PROJECT\powerbi-capstone-Automotive-parts-02\Data\cleaned\dim_time_cleaned.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),[m
+ 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])[m
+[31m-=======[m
+[31m-				    Source = Csv.Document(File.Contents("D:\JUNIOR USIU\Summer 2025\Data Viz\Final project\PowerBi capstone\Data\cleaned\dim_time_cleaned.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),[m
+[31m-				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),[m
+[31m-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TimeID", Int64.Type}, {"Timestamp", type date}, {"Hour", Int64.Type}, {"Day", Int64.Type}, {"Month", Int64.Type}, {"Year", Int64.Type}, {"Weekday", type text}})[m
+[31m->>>>>>> 2c1f8934cc14d265123955f1eff18500f4388fcd[m
+ 				in[m
+ 				    #"Promoted Headers"[m
+ [m
+[1mdiff --git a/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/fact_table_cleaned.tmdl b/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/fact_table_cleaned.tmdl[m
+[1mindex 12368bb..1e536e2 100644[m
+[1m--- a/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/fact_table_cleaned.tmdl[m	
+[1m+++ b/pbix files/GROUP 3 PROJECT.SemanticModel/definition/tables/fact_table_cleaned.tmdl[m	
+[36m@@ -1,38 +1,6 @@[m
+ table fact_table_cleaned[m
+ 	lineageTag: dd6ad3d9-a11a-45e6-9ad7-1725108f2b2c[m
+ [m
+[31m-	measure 'Maximum Temperature' = MAX(fact_table_cleaned[Temperature])[m
+[31m-		lineageTag: 20eb5228-373d-4f77-9cf4-110dbe74d228[m
+[31m-[m
+[31m-		annotation PBI_FormatHint = {"isGeneralNumber":true}[m
+[31m-[m
+[31m-	measure '% of equipments likely to fail' =[m
+[31m-			DIVIDE([m
+[31m-			    CALCULATE([m
+[31m-			        COUNTROWS(fact_table_cleaned),[m
+[31m-			        FILTER([m
+[31m-			            fact_table_cleaned,[m
+[31m-			            fact_table_cleaned[PredictedFailure] = "True"[m
+[31m-			        )[m
+[31m-			    ),[m
+[31m-			    COUNTROWS(fact_table_cleaned)[m
+[31m-			)[m
+[31m-		formatString: 0[m
+[31m-		lineageTag: 2340137d-4271-41ad-8719-0f213a7ee4f4[m
+[31m-[m
+[31m-	measure CriticalEquip_HighVibration =[m
+[31m-			[m
+[31m-			CALCULATE([m
+[31m-			    COUNTROWS(fact_table_cleaned),[m
+[31m-			    FILTER([m
+[31m-			        fact_table_cleaned,[m
+[31m-			        fact_table_cleaned[Vibration] > 5 &&[m
+[31m-			        RELATED(dim_equipment_cleaned[IsCritical]) = TRUE()[m
+[31m-			    )[m
+[31m-			)[m
+[31m-		formatString: 0[m
+[31m-		lineageTag: 6efda32d-8df4-48be-9495-69c09ec1e6d8[m
+[31m-[m
+ 	column SensorDataID[m
+ 		dataType: string[m
+ 		lineageTag: 2c964c14-2b6a-4647-a771-cc523db0de0c[m
+[36m@@ -43,13 +11,8 @@[m [mtable fact_table_cleaned[m
+ [m
+ 	column Timestamp[m
+ 		dataType: dateTime[m
+[31m-<<<<<<< HEAD[m
+ 		formatString: Long Date[m
+ 		lineageTag: f34a846c-7465-460c-bb58-5b42944a36f5[m
+[31m-=======[m
+[31m-		formatString: dd/mm/yyyy[m
+[31m-		lineageTag: 748dff5a-9e19-4ed0-871a-1e02eac1a475[m
+[31m->>>>>>> 2c1f8934cc14d265123955f1eff18500f4388fcd[m
+ 		summarizeBy: none[m
+ 		sourceColumn: Timestamp[m
+ [m
+[36m@@ -57,8 +20,6 @@[m [mtable fact_table_cleaned[m
+ [m
+ 		annotation UnderlyingDateTimeDataType = Date[m
+ [m
+[31m-		annotation PBI_FormatHint = {"isDateTimeCustom":true}[m
+[31m-[m
+ 	column EquipmentID[m
+ 		dataType: string[m
+ 		lineageTag: 272ba7a1-e5f1-4abe-8569-dc1bbc20cd69[m
+[36m@@ -69,11 +30,7 @@[m [mtable fact_table_cleaned[m
+ [m
+ 	column TimeID[m
+ 		dataType: string[m
+[31m-<<<<<<< HEAD[m
+ 		lineageTag: 030bac3d-29cb-40fe-b6af-18c9cd4e0b1d[m
+[31m-=======[m
+[31m-		lineageTag: 41c18230-78a8-4ac7-b75c-6e59f194eeae[m
+[31m->>>>>>> 2c1f8934cc14d265123955f1eff18500f4388fcd[m
+ 		summarizeBy: none[m
+ 		sourceColumn: TimeID[m
+ [m
+[36m@@ -225,15 +182,9 @@[m [mtable fact_table_cleaned[m
+ 		mode: import[m
+ 		source =[m
+ 				let[m
+[31m-<<<<<<< HEAD[m
+ 				    Source = Csv.Document(File.Contents("C:\Users\user\Downloads\DSA 3050A\GROUP PROJECT\powerbi-capstone-Automotive-parts-02\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),[m
+ 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),[m
+ 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Timestamp", type date}, {"Temperature", type number}, {"Vibration", type number}, {"Pressure", type number}, {"Voltage", type number}, {"TempNorm", type number}, {"VibNorm", type number}, {"VoltNorm", type number}, {"PresNorm", type number}, {"HealthScore", type number}, {"ReactiveCost", Int64.Type}, {"PreventiveCost", Int64.Type}, {"CostAvoided", Int64.Type}, {"PredictedFailure", type logical}})[m
+[31m-=======[m
+[31m-				    Source = Csv.Document(File.Contents("D:\JUNIOR USIU\Summer 2025\Data Viz\Final project\PowerBi capstone\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),[m
+[31m-				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),[m
+[31m-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SensorDataID", type text}, {"Timestamp", type date}, {"EquipmentID", type text}, {"TimeID", type text}, {"SensorID", type text}, {"LocationID", type text}, {"Temperature", type number}, {"Vibration", type number}, {"Pressure", type number}, {"Voltage", type number}, {"TempNorm", type number}, {"VibNorm", type number}, {"VoltNorm", type number}, {"PresNorm", type number}, {"HealthScore", type number}, {"PredictedFailure", type logical}, {"ReactiveCost", Int64.Type}, {"PreventiveCost", Int64.Type}, {"CostAvoided", Int64.Type}})[m
+[31m->>>>>>> 2c1f8934cc14d265123955f1eff18500f4388fcd[m
+ 				in[m
+ 				    #"Changed Type"[m
+ [m
+[1mdiff --git a/pbix files/GROUP 3 PROJECT.SemanticModel/diagramLayout.json b/pbix files/GROUP 3 PROJECT.SemanticModel/diagramLayout.json[m
+[1mindex 13b29c5..9c5f8bd 100644[m
+[1m--- a/pbix files/GROUP 3 PROJECT.SemanticModel/diagramLayout.json[m	
+[1m+++ b/pbix files/GROUP 3 PROJECT.SemanticModel/diagramLayout.json[m	
+[36m@@ -4,7 +4,7 @@[m
+     {[m
+       "ordinal": 0,[m
+       "scrollPosition": {[m
+[31m-        "x": 144.29824561403484,[m
+[32m+[m[32m        "x": 0,[m
+         "y": 0[m
+       },[m
+       "nodes": [[m
+[1mdiff --git a/powerbi-capstone-Automotive-parts-02 b/powerbi-capstone-Automotive-parts-02[m
+[1mnew file mode 160000[m
+[1mindex 0000000..2c1f893[m
+[1m--- /dev/null[m
+[1m+++ b/powerbi-capstone-Automotive-parts-02[m
+[36m@@ -0,0 +1 @@[m
+[32m+[m[32mSubproject commit 2c1f8934cc14d265123955f1eff18500f4388fcd[m
