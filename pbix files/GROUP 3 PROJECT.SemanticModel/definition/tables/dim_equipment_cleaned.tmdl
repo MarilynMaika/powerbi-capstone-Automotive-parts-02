@@ -1,45 +1,9 @@
 table dim_equipment_cleaned
-	lineageTag: 877f5113-db83-482f-8945-f5f0cba23000
-
-	measure CriticalEquip_LowHealthCount =
-			
-			CALCULATE(
-			    COUNTROWS(fact_table_cleaned),
-			    FILTER(
-			        fact_table_cleaned,
-			        fact_table_cleaned[HealthScore] < 50 &&
-			        RELATED(dim_equipment_cleaned[IsCritical]) = TRUE()
-			    )
-			)
-		formatString: 0
-		lineageTag: c19d0d05-dc5d-438f-bc0a-6a3518762290
-
-	measure 'Reactive-to-Preventive Cost Ratio' =
-			
-			DIVIDE(SUM(fact_table_cleaned[ReactiveCost]), SUM(fact_table_cleaned[PreventiveCost]))
-		lineageTag: 1ae946fe-4401-4dd8-9916-27de2098a077
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure Equipment_Count = DISTINCTCOUNT(dim_equipment_cleaned[EquipmentID])
-		formatString: 0
-		lineageTag: f7bd1c21-28ac-4311-bfeb-bf8a04ebcf69
-
-	measure Count_CriticalEquipment =
-			
-			CALCULATE(
-			    COUNTROWS(dim_equipment_cleaned),
-			    FILTER(
-			        dim_equipment_cleaned,
-			        dim_equipment_cleaned[IsCritical] = "True"
-			    )
-			)
-		formatString: 0
-		lineageTag: 6d1c2445-eca6-43d4-aea8-cb5c46938f0d
+	lineageTag: 91217463-8038-42a9-9e24-a8089538f615
 
 	column EquipmentID
 		dataType: string
-		lineageTag: 543b8f8e-c8b4-434e-a925-f57cd068cd51
+		lineageTag: de4a73b2-ecbd-4796-bc52-a74c423e28b2
 		summarizeBy: none
 		sourceColumn: EquipmentID
 
@@ -47,7 +11,7 @@ table dim_equipment_cleaned
 
 	column EquipmentType
 		dataType: string
-		lineageTag: dcc15507-8abf-4c38-84e8-164a314021b1
+		lineageTag: 16409b37-f651-4ca0-b6a1-6979daaeefbf
 		summarizeBy: none
 		sourceColumn: EquipmentType
 
@@ -55,7 +19,7 @@ table dim_equipment_cleaned
 
 	column Manufacturer
 		dataType: string
-		lineageTag: abfece1e-608e-4364-b868-4a4506429c3c
+		lineageTag: cf11e3a9-df88-47ea-a83f-0b4c262f4cb4
 		summarizeBy: none
 		sourceColumn: Manufacturer
 
@@ -64,22 +28,23 @@ table dim_equipment_cleaned
 	column InstallationDate
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: a6d152a8-574e-402f-836a-bdff0b59d201
+		lineageTag: 774136bf-35c3-4e70-a09d-00e4c0bd9ebb
 		summarizeBy: none
 		sourceColumn: InstallationDate
 
 		variation Variation
 			isDefault
-			relationship: d9062d0b-bd44-4ecb-9f78-a126a05e5b43
-			defaultHierarchy: LocalDateTable_b2912d3e-7489-4c67-9dcb-043b86808f2d.'Date Hierarchy'
+			relationship: 984917ec-1474-4a49-9e02-a5591f909e79
+			defaultHierarchy: LocalDateTable_ee3526ee-da87-43a3-9623-ea116ee21fd1.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
 
 	column IsCritical
-		dataType: string
-		lineageTag: 39a87cdc-9b5e-4a08-9907-052e91fc5463
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 605a3d45-f47b-4118-9548-987ba51f5496
 		summarizeBy: none
 		sourceColumn: IsCritical
 
@@ -89,9 +54,9 @@ table dim_equipment_cleaned
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("D:\JUNIOR USIU\Summer 2025\Data Viz\Final project\PowerBi capstone\Data\cleaned\dim_equipment_cleaned.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("C:\Users\user\Downloads\DSA 3050A\GROUP PROJECT\powerbi-capstone-Automotive-parts-02\Data\cleaned\dim_equipment_cleaned.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EquipmentID", type text}, {"EquipmentType", type text}, {"Manufacturer", type text}, {"InstallationDate", type date}, {"IsCritical", type text}})
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"InstallationDate", type date}, {"IsCritical", type logical}})
 				in
 				    #"Changed Type"
 

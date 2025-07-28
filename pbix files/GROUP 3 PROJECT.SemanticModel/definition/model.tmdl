@@ -1,29 +1,29 @@
 model Model
 	culture: en-US
 	defaultPowerBIDataSourceVersion: powerBI_V3
-	sourceQueryCulture: en-US
+	sourceQueryCulture: en-GB
 	dataAccessOptions
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["fact_table_cleaned","dim_time_cleaned","dim_sensor_cleaned","dim_locatiion_cleaned","dim_equipment_cleaned"]
+annotation PBIDesktopVersion = 2.145.1105.0 (25.07)+decbc46fce458c5b8d5109d6f32a743f2ac949c8
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.145.1105.0 (25.07)+decbc46fce458c5b8d5109d6f32a743f2ac949c8
+annotation PBI_QueryOrder = ["fact_table_cleaned","dim_time_cleaned","dim_sensor_cleaned","dim_locatiion_cleaned","dim_equipment_cleaned"]
 
-annotation PBI_ProTooling = ["DevMode"]
+annotation __TEdtr = 1
+
+annotation PBI_ProTooling = ["DevMode","CalcGroup","TMDLView_Desktop"]
 
 ref table fact_table_cleaned
-ref table DateTableTemplate_fbf5901f-1e52-4c87-a3ce-b83bf1c5f62f
 ref table dim_time_cleaned
-ref table LocalDateTable_32541905-2131-42e4-b9d3-df2b381f0a58
 ref table dim_sensor_cleaned
-ref table LocalDateTable_639b5fce-43b0-4959-92cd-f937c68453bf
 ref table dim_locatiion_cleaned
 ref table dim_equipment_cleaned
-ref table LocalDateTable_b2912d3e-7489-4c67-9dcb-043b86808f2d
-ref table LocalDateTable_171a2de4-9a50-4c2f-aa54-85b9d100ac06
+ref table DateTableTemplate_2ef97572-4c07-496a-8935-cd3f1f2225a7
+ref table LocalDateTable_d150c8ea-6d94-41e1-ad37-0a45febfcf27
+ref table LocalDateTable_ee3526ee-da87-43a3-9623-ea116ee21fd1
 
 ref cultureInfo en-US
 
