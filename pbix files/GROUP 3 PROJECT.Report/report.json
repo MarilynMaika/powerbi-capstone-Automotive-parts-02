@@ -49,7 +49,6 @@
       "displayOption": 2,
       "filters": "[]",
       "height": 720.00,
-<<<<<<< HEAD
       "name": "ReportSection0144412f16027752a4a6",
       "visualContainers": [
         {
@@ -85,21 +84,10 @@
           "height": 720.00,
           "width": 152.00,
           "x": 0.00,
-=======
-      "name": "ad39cc2126fb9d9a0b8a",
-      "visualContainers": [
-        {
-          "config": "{\"name\":\"029cdf78846a3fc1546a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":0,\"width\":280,\"height\":280,\"z\":0,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"dim_sensor_cleaned.SensorID\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_sensor_cleaned\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"SensorID\"},\"Name\":\"dim_sensor_cleaned.SensorID\",\"NativeReferenceName\":\"SensorID\"}]},\"drillFilterOtherVisuals\":true}}",
-          "filters": "[]",
-          "height": 280.00,
-          "width": 280.00,
-          "x": 10.00,
->>>>>>> 2c1f8934cc14d265123955f1eff18500f4388fcd
           "y": 0.00,
           "z": 0.00
         },
         {
-<<<<<<< HEAD
           "config": "{\"name\":\"445691b54ec401c6fd65\",\"layouts\":[{\"id\":0,\"position\":{\"x\":8,\"y\":104,\"z\":10000,\"width\":136,\"height\":32,\"tabOrder\":8000}}],\"singleVisual\":{\"visualType\":\"actionButton\",\"drillFilterOtherVisuals\":true,\"objects\":{\"fill\":[{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"75D\"}}}},\"selector\":{\"id\":\"default\"}},{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"75D\"}}}},\"selector\":{\"id\":\"hover\"}}]},\"vcObjects\":{\"visualLink\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
           "filters": "[]",
           "height": 32.00,
@@ -136,16 +124,16 @@
           "z": 9000.00
         },
         {
-          "config": "{\"name\":\"72c6fe284b7d5dedf244\",\"layouts\":[{\"id\":0,\"position\":{\"x\":184,\"y\":16,\"z\":6000,\"width\":472,\"height\":64,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Dummy Sales Dashboard\",\"textStyle\":{\"fontSize\":\"28pt\"}}]}]}}]},\"vcObjects\":{}}}",
+          "config": "{\"name\":\"72c6fe284b7d5dedf244\",\"layouts\":[{\"id\":0,\"position\":{\"x\":184.5702555883712,\"y\":15.641547083760269,\"z\":6000,\"width\":1062.0610469873222,\"height\":64.1303430434171,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"PREDICTIVE MAINTENANCE ANALYSIS DASHBOARD\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontFamily\":\"Arial Unicode MS\",\"fontSize\":\"28pt\"}}],\"horizontalTextAlignment\":\"center\"}]}}]},\"vcObjects\":{}}}",
           "filters": "[]",
-          "height": 64.00,
-          "width": 472.00,
-          "x": 184.00,
-          "y": 16.00,
+          "height": 64.13,
+          "width": 1062.06,
+          "x": 184.57,
+          "y": 15.64,
           "z": 6000.00
         },
         {
-          "config": "{\"name\":\"89c08402a07765a88c02\",\"layouts\":[{\"id\":0,\"position\":{\"x\":984.9085239838172,\"y\":192.73500137660105,\"z\":3000,\"width\":262.9689425562099,\"height\":217.23521341599948,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"fact_table_cleaned.PredictedFailure\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(fact_table_cleaned.SensorDataID)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fact_table_cleaned\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"PredictedFailure\"},\"Name\":\"fact_table_cleaned.PredictedFailure\",\"NativeReferenceName\":\"PredictedFailure\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SensorDataID\"}},\"Function\":5},\"Name\":\"CountNonNull(fact_table_cleaned.SensorDataID)\",\"NativeReferenceName\":\"Count of SensorDataID\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SensorDataID\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{},\"vcObjects\":{\"title\":[{\"properties\":{\"heading\":{\"expr\":{\"Literal\":{\"Value\":\"'Heading2'\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Count of Sensor Data ID by Predicted Failure'\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Arial Unicode MS'''\"}}}}}]}}}",
+          "config": "{\"name\":\"89c08402a07765a88c02\",\"layouts\":[{\"id\":0,\"position\":{\"x\":984.9085239838172,\"y\":192.73500137660105,\"z\":3000,\"width\":262.9689425562099,\"height\":217.23521341599948,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"fact_table_cleaned.PredictedFailure\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(fact_table_cleaned.SensorDataID)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fact_table_cleaned\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"PredictedFailure\"},\"Name\":\"fact_table_cleaned.PredictedFailure\",\"NativeReferenceName\":\"PredictedFailure\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SensorDataID\"}},\"Function\":5},\"Name\":\"CountNonNull(fact_table_cleaned.SensorDataID)\",\"NativeReferenceName\":\"Count of SensorDataID\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SensorDataID\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{},\"vcObjects\":{\"title\":[{\"properties\":{\"heading\":{\"expr\":{\"Literal\":{\"Value\":\"'Heading2'\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Count of Sensor Data ID by Predicted Failure'\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Arial Unicode MS'''\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
           "filters": "[]",
           "height": 217.24,
           "width": 262.97,
@@ -214,33 +202,6 @@
           "x": 1008.00,
           "y": 80.00,
           "z": 13000.00
-=======
-          "config": "{\"name\":\"5d437adee0fb1fd035ff\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":290,\"width\":280,\"height\":280,\"z\":1,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"card\",\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
-          "filters": "[]",
-          "height": 280.00,
-          "width": 280.00,
-          "x": 10.00,
-          "y": 290.00,
-          "z": 1.00
-        },
-        {
-          "config": "{\"name\":\"6b5ac14e3de0e0f7c03b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":300,\"y\":0,\"width\":280,\"height\":280,\"z\":3,\"tabOrder\":3}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"dim_equipment_cleaned.CriticalEquip_LowHealthCount\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_equipment_cleaned\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"CriticalEquip_LowHealthCount\"},\"Name\":\"dim_equipment_cleaned.CriticalEquip_LowHealthCount\",\"NativeReferenceName\":\"CriticalEquip_LowHealthCount\"}]},\"drillFilterOtherVisuals\":true}}",
-          "filters": "[]",
-          "height": 280.00,
-          "width": 280.00,
-          "x": 300.00,
-          "y": 0.00,
-          "z": 3.00
-        },
-        {
-          "config": "{\"name\":\"9c1e0f1ee5fb2bcb24ff\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":570,\"width\":280,\"height\":150,\"z\":2,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"dim_equipment_cleaned.Count_CriticalEquipment\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_equipment_cleaned\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Count_CriticalEquipment\"},\"Name\":\"dim_equipment_cleaned.Count_CriticalEquipment\",\"NativeReferenceName\":\"Count_CriticalEquipment\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Count_CriticalEquipment\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
-          "filters": "[]",
-          "height": 150.00,
-          "width": 280.00,
-          "x": 10.00,
-          "y": 570.00,
-          "z": 2.00
->>>>>>> 2c1f8934cc14d265123955f1eff18500f4388fcd
         }
       ],
       "width": 1280.00
