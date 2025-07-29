@@ -1,6 +1,166 @@
 table fact_table_cleaned
 	lineageTag: dd6ad3d9-a11a-45e6-9ad7-1725108f2b2c
 
+	measure 'Average HealthScore' = AVERAGE(fact_table_cleaned[HealthScore])
+		lineageTag: 9419207e-4b12-49e8-8b1b-7dfafb3d4a34
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Max Temperature' = MAX(fact_table_cleaned[Temperature])
+		lineageTag: 7ed884c8-e953-4ab8-9e59-27a1b74f9c4c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MIN Temperature' = MIN(fact_table_cleaned[Temperature])
+		lineageTag: 665db2ad-57a9-41d2-94c7-7c4bae872af7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AVERAGE TEMPERATURE' = AVERAGE(fact_table_cleaned[Temperature])
+		lineageTag: be29bdfb-e7d5-4442-a8a7-e1fd2984774f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AVERAGE VOLTAGE' = AVERAGE(fact_table_cleaned[Voltage])
+		lineageTag: da4df56d-93de-40cf-9cd6-ba0e9ea1387e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Records' = SUM(fact_table_cleaned[SensorDataID])
+		formatString: 0
+		lineageTag: 69ab98ee-e356-48ec-9965-582e01aebbc9
+
+	measure FailureCount = ```
+			
+			CALCULATE(
+			    COUNTROWS(fact_table_cleaned),
+			    FILTER(
+			        fact_table_cleaned,
+			        fact_table_cleaned[PredictedFailure] = "True"
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 8fb20f7d-11e8-4e6d-b6cc-606749b677be
+
+	measure 'Total Cost Avoided' = SUM(fact_table_cleaned[CostAvoided])
+		formatString: 0
+		lineageTag: 7660639a-1197-4e89-abe8-6a007972e789
+
+	measure 'Total Preventive Cost' = SUM(fact_table_cleaned[PreventiveCost])
+		formatString: 0
+		lineageTag: 89579f2d-198b-4e52-8f52-c35aa2722bab
+
+	measure 'Total Reactive Cost' = SUM(fact_table_cleaned[ReactiveCost])
+		formatString: 0
+		lineageTag: a7ab3dd7-c106-436b-80b5-0830917a7257
+
+	measure Percent_EquipmentsLikelyToFail = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS(fact_table_cleaned),
+			        fact_table_cleaned[PredictedFailure] = "True"
+			    ),
+			    COUNTROWS(fact_table_cleaned)
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 3448d324-5ddb-47e5-ba77-37d64ca8c1a7
+
+	measure 'Average Cost Avoided per Failure' = DIVIDE(SUM(fact_table_cleaned[CostAvoided]), COUNTROWS(FILTER(fact_table_cleaned, fact_table_cleaned[PredictedFailure] = "TRUE")))
+		formatString: 0
+		lineageTag: e61e23a5-de40-4d34-b0f1-002b2cdca167
+
+	measure 'Reactive-to-Preventive Cost Ratio' = DIVIDE(SUM(fact_table_cleaned[ReactiveCost]), SUM(fact_table_cleaned[PreventiveCost]))
+		lineageTag: 6972aec2-b617-409e-ae5e-a558c283f44e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cost Savings %' = ```
+			DIVIDE(SUM(fact_table_cleaned[CostAvoided]), SUM(fact_table_cleaned[ReactiveCost]) + SUM(fact_table_cleaned[PreventiveCost]))
+			
+			
+			```
+		lineageTag: 202dd15e-385f-4b4e-bd0c-4bab8bf2f4bc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CriticalEquipmentCount = ```
+			
+			COUNTROWS(
+			    FILTER(
+			        fact_table_cleaned,
+			        fact_table_cleaned[EquipmentID] > 5 &&
+			        RELATED(dim_equipment_cleaned[IsCritical]) = "True"
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 901b732b-b1b2-48ce-9f20-4990a565cc6c
+
+	measure 'Average Pressure' = AVERAGE(fact_table_cleaned[Pressure])
+		lineageTag: 65c6ae4b-9af5-42a8-ac11-efc516ceaebd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CriticalEquip_HighVibration =
+			
+			CALCULATE(
+			    COUNTROWS(fact_table_cleaned),
+			    FILTER(
+			        fact_table_cleaned,
+			        fact_table_cleaned[Vibration] > 5 &&
+			        RELATED(dim_equipment_cleaned[IsCritical]) = "True"
+			    )
+			)
+		formatString: 0
+		lineageTag: 36c9bcd3-6e7e-44f4-8aaf-da0b057e9872
+
+	measure CriticalEquip_LowHealthScore = ```
+			
+			CALCULATE(
+			    COUNTROWS(fact_table_cleaned),
+			    FILTER(
+			        fact_table_cleaned,
+			        fact_table_cleaned[HealthScore] < 50 &&
+			        RELATED(dim_equipment_cleaned[IsCritical]) = "True"
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 5db9d673-3b81-46e4-a382-bdd0f1284818
+
+	measure NonCriticalEquip_LowHealthScore =
+			
+			CALCULATE(
+			    COUNTROWS(fact_table_cleaned),
+			    FILTER(
+			        fact_table_cleaned,
+			        fact_table_cleaned[HealthScore] < 50 &&
+			        RELATED(dim_equipment_cleaned[IsCritical]) = "False"
+			    )
+			)
+		formatString: 0
+		lineageTag: 17c5cd3d-be4a-48aa-9506-401310eeb031
+
+	measure NonCriticalEquip_HighHealthScore =
+			
+			CALCULATE(
+			    COUNTROWS(fact_table_cleaned),
+			    FILTER(
+			        fact_table_cleaned,
+			        fact_table_cleaned[HealthScore] > 50 &&
+			        RELATED(dim_equipment_cleaned[IsCritical]) = "False"
+			    )
+			)
+		formatString: 0
+		lineageTag: db87790a-a69d-4d52-816a-97e5677cf7dd
+
 	column SensorDataID
 		dataType: string
 		lineageTag: 2c964c14-2b6a-4647-a771-cc523db0de0c
@@ -11,7 +171,7 @@ table fact_table_cleaned
 
 	column Timestamp
 		dataType: dateTime
-		formatString: Long Date
+		formatString: mm/dd/yy
 		lineageTag: f34a846c-7465-460c-bb58-5b42944a36f5
 		summarizeBy: none
 		sourceColumn: Timestamp
@@ -19,6 +179,8 @@ table fact_table_cleaned
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
 
 	column EquipmentID
 		dataType: string
@@ -54,93 +216,84 @@ table fact_table_cleaned
 
 	column Temperature
 		dataType: double
+		formatString: 0.00
 		lineageTag: 85a98420-2bff-4895-8aeb-b65366ea94af
 		summarizeBy: sum
 		sourceColumn: Temperature
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column Vibration
 		dataType: double
+		formatString: 0.00
 		lineageTag: 66160c14-1a05-4c4f-9ed3-51f39249d0ea
 		summarizeBy: sum
 		sourceColumn: Vibration
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column Pressure
 		dataType: double
+		formatString: 0.00
 		lineageTag: 6d5b39a4-53a3-489e-a8eb-d44ec61f7c55
 		summarizeBy: sum
 		sourceColumn: Pressure
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column Voltage
 		dataType: double
+		formatString: 0.00
 		lineageTag: e7dc19f1-d085-452b-8b5c-43bbeb9d5b1f
 		summarizeBy: sum
 		sourceColumn: Voltage
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column TempNorm
 		dataType: double
+		formatString: 0.00
 		lineageTag: 91c8e9b9-ff73-46b5-9b77-5c9b9e5c3eff
 		summarizeBy: sum
 		sourceColumn: TempNorm
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column VibNorm
 		dataType: double
+		formatString: 0.00
 		lineageTag: 39c5953b-c19b-497b-a02a-420fa082618c
 		summarizeBy: sum
 		sourceColumn: VibNorm
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column VoltNorm
 		dataType: double
+		formatString: 0.00
 		lineageTag: 71df9dc1-3585-48f6-a0b5-845dda983d55
 		summarizeBy: sum
 		sourceColumn: VoltNorm
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column PresNorm
 		dataType: double
+		formatString: 0.00
 		lineageTag: e3d5dc7e-b4ea-40cc-9548-6a5973676886
 		summarizeBy: sum
 		sourceColumn: PresNorm
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column HealthScore
 		dataType: double
+		formatString: 0.00
 		lineageTag: 117e48c4-937f-4dd7-884e-6cd49e0e35ae
 		summarizeBy: sum
 		sourceColumn: HealthScore
 
 		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column PredictedFailure
 		dataType: boolean
