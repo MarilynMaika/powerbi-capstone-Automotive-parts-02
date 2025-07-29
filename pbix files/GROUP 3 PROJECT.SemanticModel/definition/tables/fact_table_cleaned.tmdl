@@ -161,6 +161,10 @@ table fact_table_cleaned
 		formatString: 0
 		lineageTag: db87790a-a69d-4d52-816a-97e5677cf7dd
 
+	measure 'Failure Rate per Equipment Type' = DIVIDE(CALCULATE(COUNTROWS(fact_table_cleaned), fact_table_cleaned[PredictedFailure] = 1), CALCULATE(DISTINCTCOUNT(fact_table_cleaned[EquipmentID]), ALL(fact_table_cleaned)))
+		formatString: 0%;-0%;0%
+		lineageTag: 9ce4537f-f01d-4f70-ad93-3420545661ff
+
 	column SensorDataID
 		dataType: string
 		lineageTag: 2c964c14-2b6a-4647-a771-cc523db0de0c
@@ -331,15 +335,24 @@ table fact_table_cleaned
 
 		annotation SummarizationSetBy = Automatic
 
+	column TemperatureCategory
+		dataType: string
+		lineageTag: b35e5a66-9693-48c3-bec1-281c6d5ec646
+		summarizeBy: none
+		sourceColumn: TemperatureCategory
+
+		annotation SummarizationSetBy = Automatic
+
 	partition fact_table_cleaned = m
 		mode: import
 		source =
 				let
 				    Source = Csv.Document(File.Contents("D:\JUNIOR USIU\Summer 2025\Data Viz\Final project\PowerBi capstone\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Timestamp", type date}, {"Temperature", type number}, {"Vibration", type number}, {"Pressure", type number}, {"Voltage", type number}, {"TempNorm", type number}, {"VibNorm", type number}, {"VoltNorm", type number}, {"PresNorm", type number}, {"HealthScore", type number}, {"ReactiveCost", Int64.Type}, {"PreventiveCost", Int64.Type}, {"CostAvoided", Int64.Type}, {"PredictedFailure", type logical}})
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Timestamp", type date}, {"Temperature", type number}, {"Vibration", type number}, {"Pressure", type number}, {"Voltage", type number}, {"TempNorm", type number}, {"VibNorm", type number}, {"VoltNorm", type number}, {"PresNorm", type number}, {"HealthScore", type number}, {"ReactiveCost", Int64.Type}, {"PreventiveCost", Int64.Type}, {"CostAvoided", Int64.Type}, {"PredictedFailure", type logical}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type", "TemperatureCategory", each if [Temperature] <= 62.47 then "Low" else if [Temperature] <= 83.34 then "Medium" else "High")
 				in
-				    #"Changed Type"
+				    #"Added Conditional Column"
 
 	annotation PBI_ResultType = Table
 
