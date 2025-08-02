@@ -24,3 +24,8 @@ relationship 984917ec-1474-4a49-9e02-a5591f909e79
 	fromColumn: dim_equipment_cleaned.InstallationDate
 	toColumn: LocalDateTable_ee3526ee-da87-43a3-9623-ea116ee21fd1.Date
 
+relationship 54a29ae9-d3df-4951-b868-fe92934d9e36
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_time_cleaned.Timestamp
+	toColumn: LocalDateTable_5c375684-f975-4840-875e-4d61c3b5eb13.Date
+

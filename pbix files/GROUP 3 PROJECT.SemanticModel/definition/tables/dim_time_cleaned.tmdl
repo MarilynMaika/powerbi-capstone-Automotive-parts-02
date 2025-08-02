@@ -10,18 +10,29 @@ table dim_time_cleaned
 		annotation SummarizationSetBy = Automatic
 
 	column Timestamp
-		dataType: string
+		dataType: dateTime
+		formatString: Long Date
 		lineageTag: a8445bea-09d4-4742-97e6-6c65de9aec43
 		summarizeBy: none
 		sourceColumn: Timestamp
 
+		variation Variation
+			isDefault
+			relationship: 54a29ae9-d3df-4951-b868-fe92934d9e36
+			defaultHierarchy: LocalDateTable_5c375684-f975-4840-875e-4d61c3b5eb13.'Date Hierarchy'
+
 		annotation SummarizationSetBy = Automatic
 
+		annotation UnderlyingDateTimeDataType = Date
+
 	column Hour
-		dataType: string
+		dataType: int64
+		formatString: 0
 		lineageTag: 98da4348-ed09-4277-bb77-ecfeb1f0fd3c
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Hour
+
+		changedProperty = DataType
 
 		annotation SummarizationSetBy = Automatic
 
@@ -62,9 +73,10 @@ table dim_time_cleaned
 		source =
 				let
 				    Source = Csv.Document(File.Contents("C:\Users\user\Downloads\DSA 3050A\GROUP PROJECT\powerbi-capstone-Automotive-parts-02\Data\cleaned\dim_time_cleaned.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
-				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Timestamp", type date}})
 				in
-				    #"Promoted Headers"
+				    #"Changed Type"
 
 	annotation PBI_ResultType = Table
 

@@ -24,6 +24,7 @@ ref table dim_equipment_cleaned
 ref table DateTableTemplate_2ef97572-4c07-496a-8935-cd3f1f2225a7
 ref table LocalDateTable_d150c8ea-6d94-41e1-ad37-0a45febfcf27
 ref table LocalDateTable_ee3526ee-da87-43a3-9623-ea116ee21fd1
+ref table LocalDateTable_5c375684-f975-4840-875e-4d61c3b5eb13
 
 ref cultureInfo en-US
 
