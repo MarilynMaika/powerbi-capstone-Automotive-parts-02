@@ -343,11 +343,18 @@ table fact_table_cleaned
 
 		annotation SummarizationSetBy = Automatic
 
+	hierarchy 'Timestamp Hierarchy'
+		lineageTag: 982f84a7-9f34-402c-85d9-a7c71b2705f1
+
+		level Timestamp
+			lineageTag: 3d990ce9-420b-4ec7-875c-1c83363898af
+			column: Timestamp
+
 	partition fact_table_cleaned = m
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("D:\JUNIOR USIU\Summer 2025\Data Viz\Final project\PowerBi capstone\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("C:\Users\user\Downloads\DSA 3050A\GROUP PROJECT\powerbi-capstone-Automotive-parts-02\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Timestamp", type date}, {"Temperature", type number}, {"Vibration", type number}, {"Pressure", type number}, {"Voltage", type number}, {"TempNorm", type number}, {"VibNorm", type number}, {"VoltNorm", type number}, {"PresNorm", type number}, {"HealthScore", type number}, {"ReactiveCost", Int64.Type}, {"PreventiveCost", Int64.Type}, {"CostAvoided", Int64.Type}, {"PredictedFailure", type logical}}),
 				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type", "TemperatureCategory", each if [Temperature] <= 62.47 then "Low" else if [Temperature] <= 83.34 then "Medium" else "High")
