@@ -245,7 +245,7 @@ table fact_table_cleaned
 		summarizeBy: sum
 		sourceColumn: Temperature
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column Vibration
 		dataType: double
@@ -254,7 +254,7 @@ table fact_table_cleaned
 		summarizeBy: sum
 		sourceColumn: Vibration
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column Pressure
 		dataType: double
@@ -263,7 +263,7 @@ table fact_table_cleaned
 		summarizeBy: sum
 		sourceColumn: Pressure
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column Voltage
 		dataType: double
@@ -272,7 +272,7 @@ table fact_table_cleaned
 		summarizeBy: sum
 		sourceColumn: Voltage
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column TempNorm
 		dataType: double
@@ -314,10 +314,10 @@ table fact_table_cleaned
 		dataType: double
 		formatString: 0.00
 		lineageTag: 117e48c4-937f-4dd7-884e-6cd49e0e35ae
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: HealthScore
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column PredictedFailure
 		dataType: boolean
@@ -374,7 +374,11 @@ table fact_table_cleaned
 		mode: import
 		source =
 				let
+<<<<<<< HEAD
 				    Source = Csv.Document(File.Contents("D:\JUNIOR USIU\Summer 2025\Data Viz\Final project\powerbi-capstone-Automotive-parts-02\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+=======
+				    Source = Csv.Document(File.Contents("C:\Users\jkaru\VSCODE PYTHON PROJECTS\powerbi-capstone-Automotive-parts-02\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+>>>>>>> 765dc9742845f51fc65c90ebfd4c90aa0d80c1aa
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Timestamp", type date}, {"Temperature", type number}, {"Vibration", type number}, {"Pressure", type number}, {"Voltage", type number}, {"TempNorm", type number}, {"VibNorm", type number}, {"VoltNorm", type number}, {"PresNorm", type number}, {"HealthScore", type number}, {"ReactiveCost", Int64.Type}, {"PreventiveCost", Int64.Type}, {"CostAvoided", Int64.Type}, {"PredictedFailure", type logical}}),
 				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type", "TemperatureCategory", each if [Temperature] <= 62.47 then "Low" else if [Temperature] <= 83.34 then "Medium" else "High"),
