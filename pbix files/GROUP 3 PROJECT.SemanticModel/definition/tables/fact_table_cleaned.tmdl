@@ -36,7 +36,7 @@ table fact_table_cleaned
 			    COUNTROWS(fact_table_cleaned),
 			    FILTER(
 			        fact_table_cleaned,
-			        fact_table_cleaned[PredictedFailure] = "True"
+			        fact_table_cleaned[PredictedFailure] = TRUE()
 			    )
 			)
 			
@@ -61,7 +61,7 @@ table fact_table_cleaned
 			DIVIDE(
 			    CALCULATE(
 			        COUNTROWS(fact_table_cleaned),
-			        fact_table_cleaned[PredictedFailure] = "True"
+			        fact_table_cleaned[PredictedFailure] = TRUE()
 			    ),
 			    COUNTROWS(fact_table_cleaned)
 			)
@@ -93,8 +93,7 @@ table fact_table_cleaned
 			COUNTROWS(
 			    FILTER(
 			        fact_table_cleaned,
-			        fact_table_cleaned[EquipmentID] > 5 &&
-			        RELATED(dim_equipment_cleaned[IsCritical]) = "True"
+			        RELATED(dim_equipment_cleaned[IsCritical]) = TRUE()
 			    )
 			)
 			
@@ -161,7 +160,7 @@ table fact_table_cleaned
 		formatString: 0
 		lineageTag: db87790a-a69d-4d52-816a-97e5677cf7dd
 
-	measure 'Failure Rate per Equipment Type' = DIVIDE(CALCULATE(COUNTROWS(fact_table_cleaned), fact_table_cleaned[PredictedFailure] = 1), CALCULATE(DISTINCTCOUNT(fact_table_cleaned[EquipmentID]), ALL(fact_table_cleaned)))
+	measure 'Failure Rate per Equipment Type' = DIVIDE(CALCULATE(COUNTROWS(fact_table_cleaned), fact_table_cleaned[PredictedFailure] = TRUE()), CALCULATE(DISTINCTCOUNT(fact_table_cleaned[EquipmentID]), ALL(fact_table_cleaned)))
 		formatString: 0%;-0%;0%
 		lineageTag: 9ce4537f-f01d-4f70-ad93-3420545661ff
 
@@ -181,6 +180,28 @@ table fact_table_cleaned
 				}
 
 		changedProperty = FormatString
+	measure NonCriticalEquipmentCount =
+			
+			COUNTROWS(
+			    FILTER(
+			        fact_table_cleaned,
+			        RELATED(dim_equipment_cleaned[IsCritical]) = FALSE()
+			    )
+			)
+		formatString: 0
+		lineageTag: b8c5f4d5-7e03-42f1-bfed-bef26266cedd
+
+	measure NonFailureCount =
+			
+			CALCULATE(
+			    COUNTROWS(fact_table_cleaned),
+			    FILTER(
+			        fact_table_cleaned,
+			        fact_table_cleaned[PredictedFailure] = FALSE()
+			    )
+			)
+		formatString: 0
+		lineageTag: 5c7890d4-9590-492e-bb88-938bff7e6869
 
 	column SensorDataID
 		dataType: string
@@ -369,6 +390,7 @@ table fact_table_cleaned
 		mode: import
 		source =
 				let
+				    Source = Csv.Document(File.Contents("D:\JUNIOR USIU\Summer 2025\Data Viz\Final project\powerbi-capstone-Automotive-parts-02\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    Source = Csv.Document(File.Contents("C:\Users\jkaru\VSCODE PYTHON PROJECTS\powerbi-capstone-Automotive-parts-02\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Timestamp", type date}, {"Temperature", type number}, {"Vibration", type number}, {"Pressure", type number}, {"Voltage", type number}, {"TempNorm", type number}, {"VibNorm", type number}, {"VoltNorm", type number}, {"PresNorm", type number}, {"HealthScore", type number}, {"ReactiveCost", Int64.Type}, {"PreventiveCost", Int64.Type}, {"CostAvoided", Int64.Type}, {"PredictedFailure", type logical}}),
