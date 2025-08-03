@@ -165,6 +165,23 @@ table fact_table_cleaned
 		formatString: 0%;-0%;0%
 		lineageTag: 9ce4537f-f01d-4f70-ad93-3420545661ff
 
+	measure 'Count of PredictedFailure for True' =
+			
+			CALCULATE(
+				COUNTA('fact_table_cleaned'[PredictedFailure]),
+				'fact_table_cleaned'[PredictedFailure] IN { TRUE }
+			)
+		formatString: 0
+		lineageTag: 214a336f-d705-454e-917b-a110c2edf372
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "FilteredMeasure"
+				}
+
+		changedProperty = FormatString
+
 	column SensorDataID
 		dataType: string
 		lineageTag: 2c964c14-2b6a-4647-a771-cc523db0de0c
