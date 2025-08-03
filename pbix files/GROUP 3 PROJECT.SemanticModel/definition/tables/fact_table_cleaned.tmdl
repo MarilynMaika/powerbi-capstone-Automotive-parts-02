@@ -164,23 +164,6 @@ table fact_table_cleaned
 		formatString: 0%;-0%;0%
 		lineageTag: 9ce4537f-f01d-4f70-ad93-3420545661ff
 
-	measure 'Count of PredictedFailure for True' =
-			
-			CALCULATE(
-				COUNTA('fact_table_cleaned'[PredictedFailure]),
-				'fact_table_cleaned'[PredictedFailure] IN { TRUE }
-			)
-		formatString: 0
-		lineageTag: 214a336f-d705-454e-917b-a110c2edf372
-
-		extendedProperty MeasureTemplate =
-				{
-				  "version": 0,
-				  "daxTemplateName": "FilteredMeasure"
-				}
-
-		changedProperty = FormatString
-
 	measure NonCriticalEquipmentCount =
 			
 			COUNTROWS(
@@ -203,6 +186,23 @@ table fact_table_cleaned
 			)
 		formatString: 0
 		lineageTag: 5c7890d4-9590-492e-bb88-938bff7e6869
+
+	measure 'Count of PredictedFailure for True' =
+			
+			CALCULATE(
+				COUNTA('fact_table_cleaned'[PredictedFailure]),
+				'fact_table_cleaned'[PredictedFailure] IN { TRUE }
+			)
+		formatString: 0
+		lineageTag: 214a336f-d705-454e-917b-a110c2edf372
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "FilteredMeasure"
+				}
+
+		changedProperty = FormatString
 
 	column SensorDataID
 		dataType: string
@@ -391,7 +391,7 @@ table fact_table_cleaned
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\user\Downloads\DSA 3050A\GROUP PROJECT\powerbi-capstone-Automotive-parts-02\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("D:\JUNIOR USIU\Summer 2025\Data Viz\Final project\powerbi-capstone-Automotive-parts-02\Data\cleaned\fact_table_cleaned.csv"),[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Timestamp", type date}, {"Temperature", type number}, {"Vibration", type number}, {"Pressure", type number}, {"Voltage", type number}, {"TempNorm", type number}, {"VibNorm", type number}, {"VoltNorm", type number}, {"PresNorm", type number}, {"HealthScore", type number}, {"ReactiveCost", Int64.Type}, {"PreventiveCost", Int64.Type}, {"CostAvoided", Int64.Type}, {"PredictedFailure", type logical}}),
 				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type", "TemperatureCategory", each if [Temperature] <= 62.47 then "Low" else if [Temperature] <= 83.34 then "Medium" else "High"),
