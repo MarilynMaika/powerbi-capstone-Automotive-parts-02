@@ -70,7 +70,7 @@ table fact_table_cleaned
 		formatString: 0
 		lineageTag: 3448d324-5ddb-47e5-ba77-37d64ca8c1a7
 
-	measure 'Average Cost Avoided per Failure' = DIVIDE(SUM(fact_table_cleaned[CostAvoided]), COUNTROWS(FILTER(fact_table_cleaned, fact_table_cleaned[PredictedFailure] = "TRUE")))
+	measure 'Average Cost Avoided per Failure' = DIVIDE(SUM(fact_table_cleaned[CostAvoided]), COUNTROWS(FILTER(fact_table_cleaned, fact_table_cleaned[PredictedFailure] = TRUE())))
 		formatString: 0
 		lineageTag: e61e23a5-de40-4d34-b0f1-002b2cdca167
 
@@ -113,7 +113,7 @@ table fact_table_cleaned
 			    FILTER(
 			        fact_table_cleaned,
 			        fact_table_cleaned[Vibration] > 5 &&
-			        RELATED(dim_equipment_cleaned[IsCritical]) = "True"
+			        RELATED(dim_equipment_cleaned[IsCritical]) = TRUE()
 			    )
 			)
 		formatString: 0
@@ -125,8 +125,7 @@ table fact_table_cleaned
 			    COUNTROWS(fact_table_cleaned),
 			    FILTER(
 			        fact_table_cleaned,
-			        fact_table_cleaned[HealthScore] < 50 &&
-			        RELATED(dim_equipment_cleaned[IsCritical]) = "True"
+			        RELATED(dim_equipment_cleaned[IsCritical]) = TRUE()
 			    )
 			)
 			
@@ -141,7 +140,7 @@ table fact_table_cleaned
 			    FILTER(
 			        fact_table_cleaned,
 			        fact_table_cleaned[HealthScore] < 50 &&
-			        RELATED(dim_equipment_cleaned[IsCritical]) = "False"
+			        RELATED(dim_equipment_cleaned[IsCritical]) = FALSE()
 			    )
 			)
 		formatString: 0
@@ -154,7 +153,7 @@ table fact_table_cleaned
 			    FILTER(
 			        fact_table_cleaned,
 			        fact_table_cleaned[HealthScore] > 50 &&
-			        RELATED(dim_equipment_cleaned[IsCritical]) = "False"
+			        RELATED(dim_equipment_cleaned[IsCritical]) = FALSE()
 			    )
 			)
 		formatString: 0
@@ -175,13 +174,13 @@ table fact_table_cleaned
 		formatString: 0
 		lineageTag: b8c5f4d5-7e03-42f1-bfed-bef26266cedd
 
-	measure NonFailureCount =
+	measure PredictedNonFailure_NonCriticalCount =
 			
 			CALCULATE(
 			    COUNTROWS(fact_table_cleaned),
 			    FILTER(
 			        fact_table_cleaned,
-			        fact_table_cleaned[PredictedFailure] = FALSE()
+			        fact_table_cleaned[PredictedFailure] = FALSE() && RELATED(dim_equipment_cleaned[IsCritical]) = FALSE()
 			    )
 			)
 		formatString: 0
@@ -203,6 +202,74 @@ table fact_table_cleaned
 				}
 
 		changedProperty = FormatString
+
+	measure PredictedNonFailure_CriticalCount =
+			
+			CALCULATE(
+			    COUNTROWS(fact_table_cleaned),
+			    FILTER(
+			        fact_table_cleaned,
+			        fact_table_cleaned[PredictedFailure] = FALSE() && RELATED(dim_equipment_cleaned[IsCritical]) = TRUE()
+			    )
+			)
+		formatString: 0
+		lineageTag: 3e1fdf7e-9297-4dea-8485-ce9d7aaf9367
+
+	measure Failure_NonCriticalCount =
+			
+			CALCULATE(
+			    COUNTROWS(fact_table_cleaned),
+			    FILTER(
+			        fact_table_cleaned,
+			        fact_table_cleaned[PredictedFailure] = TRUE() && RELATED(dim_equipment_cleaned[IsCritical]) = FALSE()
+			    )
+			)
+		formatString: 0
+		lineageTag: 6952db8f-8c81-492f-9dd9-da13551b89b6
+
+	measure Failure_CriticalCount =
+			
+			CALCULATE(
+			    COUNTROWS(fact_table_cleaned),
+			    FILTER(
+			        fact_table_cleaned,
+			        fact_table_cleaned[PredictedFailure] = TRUE() && RELATED(dim_equipment_cleaned[IsCritical]) = TRUE()
+			    )
+			)
+		formatString: 0
+		lineageTag: d985f3dc-bfc2-4873-9ad7-01052b142ab4
+
+	measure MAXVibration = MAX(fact_table_cleaned[Vibration])
+		lineageTag: 0a630215-0092-4372-8a89-da53cad7e157
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MINVibration = MIN(fact_table_cleaned[Vibration])
+		lineageTag: 80daccd7-ba3d-42f3-816a-412a8ef40026
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MAXPressure = MAX(fact_table_cleaned[Pressure])
+		lineageTag: 4e03dc82-8122-47f4-9e64-8023dba83e62
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MINPressure = MIN(fact_table_cleaned[Pressure])
+		lineageTag: 3adaa0f4-67c1-49a9-ad8c-3ea6e72cea1a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ROI = ```
+			
+			DIVIDE(
+			    SUM(fact_table_cleaned[CostAvoided]),
+			    SUM(fact_table_cleaned[PreventiveCost])
+			) * 100
+			
+			```
+		lineageTag: 3c6014a5-d06d-4dae-af37-32a21eb07c84
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column SensorDataID
 		dataType: string
@@ -395,7 +462,7 @@ table fact_table_cleaned
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Timestamp", type date}, {"Temperature", type number}, {"Vibration", type number}, {"Pressure", type number}, {"Voltage", type number}, {"TempNorm", type number}, {"VibNorm", type number}, {"VoltNorm", type number}, {"PresNorm", type number}, {"HealthScore", type number}, {"ReactiveCost", Int64.Type}, {"PreventiveCost", Int64.Type}, {"CostAvoided", Int64.Type}, {"PredictedFailure", type logical}}),
 				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type", "TemperatureCategory", each if [Temperature] <= 62.47 then "Low" else if [Temperature] <= 83.34 then "Medium" else "High"),
-				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Conditional Column",{{"TemperatureCategory", type text}})
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Conditional Column",{{"TemperatureCategory", type text}, {"PredictedFailure", type logical}})
 				in
 				    #"Changed Type1"
 
