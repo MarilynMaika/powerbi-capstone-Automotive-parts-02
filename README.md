@@ -1,5 +1,5 @@
-# 🚗 Predictive Maintenance for Automotive Equipment – 2024 Capstone Project  
-**Group 3** | DSA 3050 - GROUP PROJECT
+# 🚗 Predictive Maintenance for Automotive Equipment – Capstone Project  
+**Group 3** | DSA 3050 - GROUP PROJECT August 2025
 
 ---
 
@@ -19,7 +19,7 @@ The objective is to assist the maintenance and operations team in proactively ma
 
 ## 📈 Key Deliverables  
 - ✅ Business KPIs for failure reduction and cost performance  
-- ✅ ROI (Return on Investment) summary toe decisions  justify predictive strategy
+- ✅ ROI (Return on Investment) Summary by month: Supports data driven decisions and justifies the adoption of the predictive maintenance strategy
 
 ---
 
@@ -54,6 +54,7 @@ This ensured realistic variation for failure prediction modeling.
 - #### The Health Score was calculated as follows
 
 ![alt text](image-1.png)
+
 
 
  **This formula penalizes readings deviating from optimal operating ranges, with higher penalties for parameters like pressure or vibration that impact failure more significantly.**  
@@ -96,7 +97,7 @@ An ROI of **300** means that for every 1 unit spent on preventive maintenance, t
 ---
 
 ## 📊 Technical Features  
-- ✅ Star schema model with full RLS implementation  
+- ✅ Star schema model 
 - ✅ 30+ DAX measures (e.g., failure rates, monthly breakdowns, cost ratios)  
 - ✅ Calculated columns (e.g., temperature categories)  
 - ✅ Drill-through filters, parameters, and mobile layout  
@@ -114,7 +115,8 @@ An ROI of **300** means that for every 1 unit spent on preventive maintenance, t
 3. **Non-critical equipment still predicts failures**  
    → A notable percentage of predicted failures were in non-critical assets, highlighting hidden risks.
 
-
+## Conclusion
+By shifting maintenance from reactive to preventive and leveraging predictive analytics, we reduce costs and enhance equipment availability. ROI insights show preventive actions saving up to **300%** in cost per month in certain periods.
 
 ## 🌐 Published Dashboard  
 [Click to View Live Report](https://app.powerbi.com/view?r=eyJrIjoiMWNlN2U0NjctMTRiZi00YjI3LWJjYmItOGM1N2E1YjY1YWMzIiwidCI6IjE2ZDgzZWU2LTI1NGEtNDY5ZC1hNmNjLTU0ZTJjYTIzMTNlNyIsImMiOjh9)

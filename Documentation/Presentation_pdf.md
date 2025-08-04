@@ -1,9 +1,9 @@
 # Power BI Capstone Project – [Automotive parts manufacturer with IoT sensors]
-**Group [3]** | DSA 3050A – Semester Project
+**Group [3]** | DSA 3050 – Semester Project
 ## Group Members
-- Student 1 – Marilyn Maika
-- Student 2 – Gracy Kisia
-- Student 3 – Amy Njenga
+- Student 1 – Marilyn S
+- Student 2 – Gracy K
+- Student 3 – Amy N
 
 # DASHBOARD EXPLANATIONS
 ## 📊 Dashboard: Equipments Overview
