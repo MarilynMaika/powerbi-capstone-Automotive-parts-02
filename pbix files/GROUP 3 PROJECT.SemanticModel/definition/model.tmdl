@@ -10,7 +10,7 @@ annotation PBI_QueryOrder = ["fact_table_cleaned","dim_time_cleaned","dim_sensor
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.145.1602.0 (25.07)+10647c9fa319b5e39936cdb21328038c371d1fe4
+annotation PBIDesktopVersion = 2.145.1457.0 (25.07)+6e87ffa743c5aa106a85a0b5e383d76d522045ba
 
 annotation PBI_ProTooling = ["DevMode","CalcGroup","TMDLView_Desktop"]
 
