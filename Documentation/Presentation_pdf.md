@@ -4,37 +4,8 @@
 - Student 1 – Marilyn Maika
 - Student 2 – Gracy Kisia
 - Student 3 – Amy Njenga
-## Project Summary
-In the automotive manufacturing industry, unexpected equipment failures can cause costly downtime, missed delivery targets, and reduced product quality. This project aims to shift from reactive to predictive maintenance by using IoT sensor data — including temperature, vibration, voltage, and pressure — to assess machine health in real time. We developed an interactive Power BI dashboard that identifies at-risk equipment, forecasts potential failures, and quantifies maintenance cost savings. This enables decision-makers to schedule interventions proactively, reduce operational disruptions, and improve production efficiency.
 
-
-✅ **Preventive Cost**
-
-Preventive costs refer to the expenses incurred to prevent equipment failure or reduce the risk of breakdown. These are planned, scheduled maintenance activities performed regularly, even if the equipment appears to be working well.
-
-Examples:
-Routine inspections, Lubrication and cleaning, Replacing parts before failure, Calibration of machinery
-
-Goal: To avoid breakdowns, extend equipment life, and reduce long-term costs.
-
-⚠️ **Reactive Cost**
-
-Reactive costs are the expenses incurred when equipment fails unexpectedly, and action is taken after the failure. This is also called run-to-failure or corrective maintenance.
-
-Examples: Emergency repair services, Replacement of damaged components, Downtime and lost productivity, Extra labor or overtime
-
-
-Goal: To restore function, but often at higher costs due to urgency and damage.
-## Key Deliverables
-- Business KPIs
-- Top 3 insights
-- ROI estimate summary
-## Technical Features
-- Star schema model with RLS
-- 30+ DAX measures
-- Mobile layout included
-- Parameters and drill-through enabled
-
+# DASHBOARD EXPLANATIONS
 ## 📊 Dashboard: Equipments Overview
 
 This dashboard provides a high-level summary of equipment performance, focusing on failure rates, costs, and operating conditions:

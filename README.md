@@ -1,5 +1,5 @@
 # 🚗 Predictive Maintenance for Automotive Equipment – 2024 Capstone Project  
-**Group 4** | DSA 2040A – Semester Project
+**Group 3** | DSA 2040A – Semester Project
 
 ---
 
