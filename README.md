@@ -1,5 +1,5 @@
 # 🚗 Predictive Maintenance for Automotive Equipment – 2024 Capstone Project  
-**Group 3** | DSA 2040A – Semester Project
+**Group 3** | DSA 3050 - GROUP PROJECT
 
 ---
 
@@ -19,8 +19,7 @@ The objective is to assist the maintenance and operations team in proactively ma
 
 ## 📈 Key Deliverables  
 - ✅ Business KPIs for failure reduction and cost performance  
-- ✅ Top 3 insights to support strategic maintenance decisions  
-- ✅ ROI (Return on Investment) summary to justify predictive strategy
+- ✅ ROI (Return on Investment) summary toe decisions  justify predictive strategy
 
 ---
 
@@ -54,12 +53,9 @@ This ensured realistic variation for failure prediction modeling.
 
 - #### The Health Score was calculated as follows
 
-**HealthScore = 100 -
-  ((|Temperature - 75| × 0.5) +
-   (|Vibration - 5| × 2) +
-   (|Pressure - 2| × 10) +
-   (|Voltage - 220| × 0.1))**
-   
+![alt text](image-1.png)
+
+
  **This formula penalizes readings deviating from optimal operating ranges, with higher penalties for parameters like pressure or vibration that impact failure more significantly.**  
 
 
@@ -74,7 +70,7 @@ Cleaning steps included:
 ### 3. **Data Modeling in Power BI**  
 - Built a **star schema** with central `fact_table_cleaned` and surrounding dimension tables (`dim_equipment_cleaned`, `dim_date`, etc.)  
 - Established relationships and cardinalities  
-- Implemented **Row-Level Security (RLS)** for user access control  
+
 
 ### 4. **Calculated Columns**  
 Created new columns inside Power BI to enhance analysis:

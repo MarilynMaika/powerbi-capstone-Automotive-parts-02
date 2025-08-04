@@ -7,7 +7,6 @@
 
 ## 2. DAX Optimization
 - Replaced calculated columns with measures.
-- Avoided unnecessary context removal using ALL().
 
 ## 3. Visual Performance
 - Limited number of visuals per page to reduce rendering load.

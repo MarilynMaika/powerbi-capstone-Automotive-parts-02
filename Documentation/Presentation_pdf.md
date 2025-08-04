@@ -242,9 +242,6 @@ This page provides both a macro and micro view of sensor-driven insights. It all
 
 ---
 
-Let me know if you want this formatted as Markdown or included in a PowerPoint note. You're telling a very clear and data-driven story here 📈💬
-
-
 
 
 
